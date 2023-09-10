@@ -7,7 +7,7 @@ function CustomerList() {
 
     useEffect(() => {
         setData();
-    });
+    },[]);
 
     const setData = async () => {
         let user = await axios.get("/member_table");
@@ -21,24 +21,12 @@ function CustomerList() {
                 {list.map((myMap) => {
                     return (
                         <p>
-                            {myMap.id} {myMap.name} {myMap.address} {myMap.phone}
+                            {myMap.id} {myMap.date} {myMap.name} {myMap.address} {myMap.phone}
                         </p>
                     );
                 })}
             </div>
-            <div> 검색
-                {list.map((myMap) => {
-                    if (myMap.name.indexOf("김") !== -1) {
-                        return (
-                            <p>
-                                {myMap.id} {myMap.name} {myMap.address} {myMap.phone}
-                            </p>
-                        );
-                    } else {
-                        return
-                    }
-                })}
-            </div>
+
         </div>
     );
 }
