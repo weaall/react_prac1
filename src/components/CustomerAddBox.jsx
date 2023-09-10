@@ -3,17 +3,30 @@ import React, { useState, useEffect } from 'react';
 
 function CustomerAddBox() {
 
-  const [nameReg, setNameReg] = useState("")
-  const [datelReg, setDateReg] = useState("")
-  const [addressReg, setAddressReg] = useState("")
-  const [phoneReg, setPhoneReg] = useState("")
+  const [nameReg, setNameReg] = useState('')
+  const [dateReg, setDateReg] = useState('')
+  const [addressReg, setAddressReg] = useState('')
+  const [phoneReg, setPhoneReg] = useState('')
 
-  const register = async () => {
+  const onChangeName = (e) => {
+    setNameReg(e.target.value);
+  };
+  const onChangeDate = (e) => {
+    setDateReg(e.target.value);
+  };
+  const onChangeAddress = (e) => {
+    setAddressReg(e.target.value);
+  };
+  const onChangePhone = (e) => {
+    setPhoneReg(e.target.value);
+  };
+
+  const insertData = async (insertName, insertDate, insertAddress, insertPhone) => {
     await axios.post("/insert", {
-      name: '위병수',
-      date: '23-09-09',
-      address: '주소',
-      phone: '010-2050-3202'
+      name: insertName,
+      date: insertDate,
+      address: insertAddress,
+      phone: insertPhone
 
     }).then(function (response) {
       console.log(response);
@@ -26,11 +39,11 @@ function CustomerAddBox() {
 
   return (
     <div>
-      <input placeholder='이름' />
-      <input placeholder='날짜' />
-      <input placeholder='주소' />
-      <input placeholder='전화번호' />
-      <button onClick={register}>제출</button>
+      <input placeholder='이름' onChange={onChangeName} value={nameReg} />
+      <input placeholder='날짜' onChange={onChangeDate} value={dateReg}/>
+      <input placeholder='주소' onChange={onChangeAddress} value={addressReg}/>
+      <input placeholder='전화번호' onChange={onChangePhone} value={phoneReg}/>
+      <button onClick={() =>{insertData(nameReg, dateReg, addressReg, phoneReg) && alert('추가 완료')}}>제출</button>
     </div>
   )
 }

@@ -52,17 +52,18 @@ app.post("/insert", (req, res) => {
   );
 });
 
-app.post("/register", (req, res) => {
-  console.log("/insert");
-  var name = req.body.name;
-  var date = req.body.date;
-  var address = req.body.address;
-  var phone = req.body.phone;
-
-  db.query("INSERT INTO member_table (name, date, address, phone) VALUES (?,?,?,?);", [name, date, address, phone], (err, result) => {
-    res.send(result);
-  })
+app.post("/delete", (req, res) => {
+  console.log("고객데이터 삭제");
+  console.log(req.body);
+  const id = req.body.id;
+  db.query(
+    `DELETE FROM member_table WHERE id=${id};`,
+    (err, result) => {
+      res.send(result);
+    }
+  );
 });
+
 
 app.listen(PORT, () => {
   console.log("Server On : http://localhost:" + PORT);

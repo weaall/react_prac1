@@ -1,20 +1,21 @@
 import React from "react";
-import CustomerList from "./components/CustomerList";
 import "./App.css";
-import SearchBox from "./components/SearchBox";
+import CustomerList from "./components/CustomerList";
 import CustomerAddBox from "./components/CustomerAddBox";
-
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Header from './components/Header'
 
 function App() {
-
   return (
-    <div className="mainOuter">
-      <div className="mainInner">
-        <SearchBox />
-        <CustomerAddBox />
-        <CustomerList />
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<CustomerList />} />
+          <Route path="/customerAdd" element={<CustomerAddBox />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
