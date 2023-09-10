@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 function CustomerAddBox() {
 
@@ -40,10 +41,12 @@ function CustomerAddBox() {
   return (
     <div>
       <input placeholder='이름' onChange={onChangeName} value={nameReg} />
-      <input placeholder='날짜' onChange={onChangeDate} value={dateReg}/>
-      <input placeholder='주소' onChange={onChangeAddress} value={addressReg}/>
-      <input placeholder='전화번호' onChange={onChangePhone} value={phoneReg}/>
-      <button onClick={() =>{insertData(nameReg, dateReg, addressReg, phoneReg) && alert('추가 완료')}}>제출</button>
+      <input placeholder='날짜' onChange={onChangeDate} value={dateReg} />
+      <input placeholder='주소' onChange={onChangeAddress} value={addressReg} />
+      <input placeholder='전화번호' onChange={onChangePhone} value={phoneReg} />
+      <Link to='/'>
+        <button onClick={() => { insertData(nameReg, dateReg, addressReg, phoneReg) && alert('추가 완료') }}>제출</button>
+      </Link>
     </div>
   )
 }

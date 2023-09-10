@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { Component } from 'react';
+import React from 'react';
 import styled from "styled-components";
 
 
@@ -15,8 +15,12 @@ const HeaderStyle = styled.div`
 function Header() {
     return (
         <HeaderStyle>
-            <Link to={'/'}>Weaall</Link>
-            <Link to={'/customerAdd'}>Add</Link>
+            <Link to={'/'}><p>Weaall</p></Link>
+            <Link to={'/customerAdd'}>
+                <button>추가
+
+                </button>
+            </Link>
         </HeaderStyle>
     )
 }
