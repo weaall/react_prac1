@@ -83,7 +83,7 @@ const InputBox = styled.input`
 
 const SubmitBtn = styled.button`
     align-items: center;
-    border-radius: 64px;
+    border-radius: 4px;
     justify-content: center;
     min-height: 3.5rem;
     width: 100%;
