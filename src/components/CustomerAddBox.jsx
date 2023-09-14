@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 function CustomerAddBox() {
 
@@ -39,16 +40,54 @@ function CustomerAddBox() {
 
 
   return (
-    <div>
-      <input placeholder='이름' onChange={onChangeName} value={nameReg} />
-      <input placeholder='날짜' onChange={onChangeDate} value={dateReg} />
-      <input placeholder='주소' onChange={onChangeAddress} value={addressReg} />
-      <input placeholder='전화번호' onChange={onChangePhone} value={phoneReg} />
+    <Container>
+      <Tag>이름</Tag>
+      <InputBox onChange={onChangeName} value={nameReg} />
+      <Tag>가입날짜</Tag>
+      <InputBox onChange={onChangeDate} value={dateReg} />
+      <Tag>주소</Tag>
+      <InputBox onChange={onChangeAddress} value={addressReg} />
+      <Tag>전화번호</Tag>
+      <InputBox onChange={onChangePhone} value={phoneReg} />
       <Link to='/'>
-        <button onClick={() => { insertData(nameReg, dateReg, addressReg, phoneReg) && alert('추가 완료') }}>제출</button>
+        <SubmitBtn onClick={() => { insertData(nameReg, dateReg, addressReg, phoneReg) && alert('추가 완료') }}>제출</SubmitBtn>
       </Link>
-    </div>
+    </Container>
   )
 }
 
 export default CustomerAddBox;
+
+const Container = styled.div`
+  display: inline-grid;
+  width: 300px;
+`
+const Tag = styled.p`
+font-size: 0.8rem;
+margin: 20px 0 10px 0;
+  
+`
+const InputBox = styled.input`
+    border-radius: 4px;
+    flex-grow: 1;
+    font-size: 1rem;
+    height: 3rem;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    padding-inline-end: 0.5rem;
+    padding-inline-start: 0.5rem;
+    background: none;
+    border: solid 1px;
+`
+
+const SubmitBtn = styled.button`
+    align-items: center;
+    border-radius: 64px;
+    justify-content: center;
+    min-height: 3.5rem;
+    width: 100%;
+    border: none;
+    background-color: #84a1ff;;
+    color: white;
+`
