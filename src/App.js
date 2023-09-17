@@ -11,8 +11,8 @@ function App() {
       <div>
         <Header />
         <Routes>
-          <Route path="/." element={<CustomerList />} />
-          <Route path="/" element={<CustomerAddBox />} />
+          <Route path="/" element={<CustomerList />} />
+          <Route path="/CustomerAdd" element={<CustomerAddBox />} />
         </Routes>
       </div>
     </BrowserRouter>
