@@ -90,4 +90,6 @@ const SubmitBtn = styled.button`
     border: none;
     background-color: #84a1ff;;
     color: white;
+    margin: 20px 0 0 0;
+    cursor: pointer;
 `
