@@ -17,6 +17,7 @@ function CustomerAddBox() {
   const [dateReg, setDateReg] = useState('')
   const [phoneReg, setPhoneReg] = useState('')
   const [addressReg, setAddressReg] = useState('')
+  const [addressDetailReg, setAddressDetailReg] = useState('')
   
   const onChangeRegoBrand = (e) => {setregoBrandReg(e.target.value);};
   const onChangeRegoGroup = (e) => {setregoGroupReg(e.target.value);};
@@ -24,8 +25,10 @@ function CustomerAddBox() {
   const onChangeRegoGrade = (e) => {setregoGradeReg(e.target.value);};
   const onChangeName = (e) => {setNameReg(e.target.value);};
   const onChangeDate = (e) => {setDateReg(e.target.value);};
-  const onChangeAddress = (e) => {setAddressReg(e.target.value);};
   const onChangePhone = (e) => {setPhoneReg(e.target.value);};
+  const onChangeAddress = (e) => {setAddressReg(e.target.value);};
+  const onChangeAddressDetail = (e) => {setAddressDetailReg(e.target.value);};
+  
 
   const insertData = async (insertName, insertDate, insertAddress, insertPhone) => {
     await axios.post("/insert", {
@@ -130,11 +133,10 @@ function CustomerAddBox() {
 
         <GridCell>
           <Tag>상세주소</Tag>
-          <InputBox value='상세주소' />
+          <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
           <UnderTag draggable='true'></UnderTag>
         </GridCell>
       </GridRow>
-
 
       <SubmitBtn onClick={() => { ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) }}>추가</SubmitBtn>
       </GridTable>

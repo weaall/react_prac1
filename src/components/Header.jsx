@@ -6,7 +6,7 @@ import styled from "styled-components";
 const HeaderStyle = styled.div`
     width: 100%;
     height: 100px;
-    background-color: darkgrey;
+    background-color: #0058a3;;
     color: white;
     font-size: 20px;
     text-align: center;
@@ -15,14 +15,30 @@ const HeaderStyle = styled.div`
 function Header() {
     return (
         <HeaderStyle>
-            <Link to={'/'}><p>Weaall</p></Link>
-            <Link to={'/customerAdd'}>
-                <button>추가
-
-                </button>
-            </Link>
+            <ContainerLi>
+                <Link to={'/'}>
+                    <ListBtn>회원관리</ListBtn>
+                </Link>
+            </ContainerLi>
+            <ContainerLi>
+                <Link to={'/customerAdd'}>
+                    <ListBtn>회원추가</ListBtn>
+                </Link>
+            </ContainerLi>
         </HeaderStyle>
     )
 }
 
 export default Header;
+
+const ContainerLi = styled.div`
+    color: white;
+    
+`
+const ListBtn = styled.button`
+    color: white;
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+    
+`
