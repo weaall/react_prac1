@@ -3,10 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 
-
-
-
 function CustomerAddBox() {
+  
   const navigate = useNavigate();
   
   const [regoBrandReg, setregoBrandReg] = useState('회원구분 🍊')
@@ -53,9 +51,11 @@ function CustomerAddBox() {
       return;
     }
   }
+  
 
   return (
     <Container>
+      <MarkUp>회원추가</MarkUp>
       <GridTable>
 
         <GridRow>
@@ -138,7 +138,7 @@ function CustomerAddBox() {
         </GridCell>
       </GridRow>
 
-      <SubmitBtn onClick={() => { ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) }}>추가</SubmitBtn>
+      <SubmitBtn onClick={() => {ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) }}>추가</SubmitBtn>
       </GridTable>
     </Container>
   )
@@ -166,13 +166,16 @@ const checkInputLengthFocus = (props) => {
   }
 }
 
+const MarkUp = styled.h2`
+  color: darkgrey;
+  margin: 20px;
+`
 const Container = styled.div`
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
 `
 const GridTable = styled.div`
   display: grid;
-  margin: 50px 0;
   width: 800px;
   justify-items: center;
 `

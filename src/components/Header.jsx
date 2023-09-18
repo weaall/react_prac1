@@ -2,16 +2,6 @@ import { Link } from "react-router-dom";
 import React from 'react';
 import styled from "styled-components";
 
-
-const HeaderStyle = styled.div`
-    width: 100%;
-    height: 100px;
-    background-color: #0058a3;;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-`;
-
 function Header() {
     return (
         <HeaderStyle>
@@ -20,6 +10,19 @@ function Header() {
                     <ListBtn>회원관리</ListBtn>
                 </Link>
             </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
+                <Link to={'/'}>
+                    <ListBtn>예약관리</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
+                <Link to={'/test'}>
+                    <ListBtn>제휴관리</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
             <ContainerLi>
                 <Link to={'/customerAdd'}>
                     <ListBtn>회원추가</ListBtn>
@@ -31,8 +34,17 @@ function Header() {
 
 export default Header;
 
+const HeaderStyle = styled.div`
+    width: 100%;
+    background-color: #0058a3;
+    color: white;
+    text-align: center;
+    display: flex;
+`;
+
 const ContainerLi = styled.div`
     color: white;
+    margin: 0 20px;
     
 `
 const ListBtn = styled.button`
@@ -40,5 +52,14 @@ const ListBtn = styled.button`
     font-size: 20px;
     border: none;
     background-color: transparent;
-    
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+`
+const Divider = styled.em`
+    content: '';
+    width: 2px;
+    height: 29px;
+    background-color: white;
+    vertical-align: -1px;
 `

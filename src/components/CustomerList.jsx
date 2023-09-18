@@ -29,7 +29,9 @@ function CustomerList() {
     }
 
     return (
+        
         <TableContainer>
+            <MarkUp>회원관리</MarkUp>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -65,9 +67,13 @@ function CustomerList() {
 
 export default CustomerList;
 
+const MarkUp = styled.h2`
+  color: darkgrey;
+  margin: 20px;
+`
+
 const TableContainer = styled.div`
     width: 100%;
-    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 `
 
@@ -83,7 +89,7 @@ const TableHead = styled.thead`
 const TableHeadCell = styled.th`
     padding: 10px 30px;
     margin: none;
-    background-color: #84a1ff;
+    background-color: #0058a3;
     color: white;
     
 `
