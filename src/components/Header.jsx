@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import React from 'react';
+import {React, useState } from 'react';
 import styled from "styled-components";
 
 function Header() {
+    let [modal, setModal] = useState(false)
     return (
         <HeaderStyle>
             <ContainerLi>

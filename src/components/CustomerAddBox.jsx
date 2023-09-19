@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
+import Postcode from './DaumPostPopUp';
 
 function CustomerAddBox() {
   
@@ -24,8 +25,8 @@ function CustomerAddBox() {
   const onChangeName = (e) => {setNameReg(e.target.value);};
   const onChangeDate = (e) => {setDateReg(e.target.value);};
   const onChangePhone = (e) => {setPhoneReg(e.target.value);};
-  const onChangeAddress = (e) => {setAddressReg(e.target.value);};
   const onChangeAddressDetail = (e) => {setAddressDetailReg(e.target.value);};
+  const onChangeAddress = num => {setAddressReg(num);};
   
 
   const insertData = async (insertName, insertDate, insertAddress, insertPhone) => {
@@ -126,11 +127,14 @@ function CustomerAddBox() {
 
       <GridRow>
         <GridCell>
+        <AddressBox> 
           <Tag>주소</Tag>
-          <InputBox onChange={onChangeAddress} value={addressReg} />
+          <Postcode onChangeAddress={onChangeAddress} />
+          </AddressBox>
+          <InputBox value={addressReg}></InputBox>
           <UnderTag draggable='true'></UnderTag>
         </GridCell>
-
+        
         <GridCell>
           <Tag>상세주소</Tag>
           <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
@@ -182,11 +186,11 @@ const GridTable = styled.div`
 const GridRow = styled.div`
 display: flex;
 width: 100%;
-  
 `
 const GridCell = styled.div`
 margin: 0 20px;
 width: 100%;
+padding: 0;
 `
 const Tag = styled.p`
 margin: 0 0 5px 0;
@@ -214,7 +218,6 @@ const InputBox = styled.input`
         ${checkInputLengthFocus};
     }
 `
-
 const SelectBox = styled.select`
 border: solid 1px black;
 position: relative;
@@ -233,7 +236,11 @@ position: relative;
         outline: none;
     }
 `
-
+const AddressBox = styled.div`
+  display: inline-flex;
+  padding: 0px;
+  margin: 0px;
+`
 const SubmitBtn = styled.button`
     align-items: center;
     border-radius: 64px;
