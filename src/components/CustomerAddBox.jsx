@@ -5,9 +5,9 @@ import styled from 'styled-components'
 import Postcode from './DaumPostPopUp';
 
 function CustomerAddBox() {
-  
+
   const navigate = useNavigate();
-  
+
   const [regoBrandReg, setregoBrandReg] = useState('회원구분 🍊')
   const [regoGroupReg, setregoGroupReg] = useState('회원소속 🍊')
   const [regoNumReg, setregoNumReg] = useState('')
@@ -17,17 +17,17 @@ function CustomerAddBox() {
   const [phoneReg, setPhoneReg] = useState('')
   const [addressReg, setAddressReg] = useState('')
   const [addressDetailReg, setAddressDetailReg] = useState('')
-  
-  const onChangeRegoBrand = (e) => {setregoBrandReg(e.target.value);};
-  const onChangeRegoGroup = (e) => {setregoGroupReg(e.target.value);};
-  const onChangeRegoNum = (e) => {setregoNumReg(e.target.value);};
-  const onChangeRegoGrade = (e) => {setregoGradeReg(e.target.value);};
-  const onChangeName = (e) => {setNameReg(e.target.value);};
-  const onChangeDate = (e) => {setDateReg(e.target.value);};
-  const onChangePhone = (e) => {setPhoneReg(e.target.value);};
-  const onChangeAddressDetail = (e) => {setAddressDetailReg(e.target.value);};
-  const onChangeAddress = num => {setAddressReg(num);};
-  
+
+  const onChangeRegoBrand = (e) => { setregoBrandReg(e.target.value); };
+  const onChangeRegoGroup = (e) => { setregoGroupReg(e.target.value); };
+  const onChangeRegoNum = (e) => { setregoNumReg(e.target.value); };
+  const onChangeRegoGrade = (e) => { setregoGradeReg(e.target.value); };
+  const onChangeName = (e) => { setNameReg(e.target.value); };
+  const onChangeDate = (e) => { setDateReg(e.target.value); };
+  const onChangePhone = (e) => { setPhoneReg(e.target.value); };
+  const onChangeAddressDetail = (e) => { setAddressDetailReg(e.target.value); };
+  const onChangeAddress = num => { setAddressReg(num); };
+
 
   const insertData = async (insertName, insertDate, insertAddress, insertPhone) => {
     await axios.post("/insert", {
@@ -52,7 +52,7 @@ function CustomerAddBox() {
       return;
     }
   }
-  
+
 
   return (
     <Container>
@@ -66,83 +66,129 @@ function CustomerAddBox() {
               <option disabled selected>회원구분 🍊</option>
               <option value="신원리조트">신원리조트</option>
               <option value="오션스타리조트">오션스타리조트</option>
-              <option value="하나로리조트">하나로리조트</option>
+              <option value="하나로오케이리조트">하나로오케이리조트</option>
               <option value="라마다">라마다</option>
             </SelectBox>
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
 
-        <GridCell>
-          <Tag>회원소속</Tag>
-          <SelectBox onChange={onChangeRegoGroup} value={regoGroupReg}>
-          <option disabled selected>회원소속 🍊</option>
-              <option value="본사">본사</option>
-              <option value="오션비치">오션비치</option>
-              <option value="크라운펫">크라운펫</option>
-              <option value="에스앤제이">에스앤제이</option>
-          </SelectBox>  
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
-      </GridRow>
+          <GridCell>
+            <Tag>회원소속</Tag>
+            <SelectBox onChange={onChangeRegoGroup} value={regoGroupReg}>
+              <option disabled selected>회원소속 🍊</option>
+              {
+                regoBrandReg === '신원리조트' || '오션스타리조트' || '하나로오케이리조트'
+                  ? <>
+                    <option value="본사">본사</option>
+                  </>
+                  : null
+              }
+              {
+                regoBrandReg === '라마다'
+                  ? <>
+                    <option value="본사">본사</option>
+                    <option value="오션비치">오션비치</option>
+                    <option value="크라운펫">크라운펫</option>
+                    <option value="에스앤제이">에스앤제이</option>
+                  </>
+                  : null
+              }
+            </SelectBox>
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
+        </GridRow>
 
-      <GridRow>
-        <GridCell>
-          <Tag>회원번호</Tag>
-          <InputBox onChange={onChangeRegoNum} value={regoNumReg} />
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
+        <GridRow>
+          <GridCell>
+            <Tag>회원번호</Tag>
+            <InputBox onChange={onChangeRegoNum} value={regoNumReg} />
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
 
-        <GridCell>
-          <Tag>회원등급</Tag>
-          <SelectBox onChange={onChangeRegoGrade} value={regoGradeReg}>
-          <option disabled selected>회원등급 🍊</option>
-              <option value="본사">본사</option>
-              <option value="오션비치">오션비치</option>
-              <option value="크라운펫">크라운펫</option>
-              <option value="에스앤제이">에스앤제이</option>
-              </SelectBox>
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
-      </GridRow>
+          <GridCell>
+            <Tag>회원등급</Tag>
+            <SelectBox onChange={onChangeRegoGrade} value={regoGradeReg}>
+              <option disabled selected>회원등급 🍊</option>
+              {
+                regoBrandReg === '신원리조트'
+                  ? <>
+                    <option value="사파이어">사파이어</option>
+                    <option value="에메랄드">에메랄드</option>
+                    <option value="루비">루비</option>
+                    <option value="마스터">마스터</option>
+                  </>
+                  : null
+              }
+              {
+                regoBrandReg === '오션스타리조트'
+                  ? <>
+                    <option value="브론즈">브론즈</option>
+                    <option value="골드">골드</option>
+                    <option value="다이아몬드">다이아몬드</option>
+                  </>
+                  : null
+              }
+              {
+                regoBrandReg === '하나로오케이리조트'
+                  ? <>
+                    <option value="스톤">스톤</option>
+                    <option value="진주">진주</option>
+                    <option value="로얄">로얄</option>
+                  </>
+                  : null
+              }
+              {
+                regoBrandReg === '라마다'
+                  ? <>
+                    <option value="등기">등기</option>
+                    <option value="멤버쉽">멤버쉽</option>
+                    <option value="수분양자">수분양자</option>
+                  </>
+                  : null
+              }
+            </SelectBox>
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
+        </GridRow>
 
-      <GridRow>
-        <GridCell>
-          <Tag>이름</Tag>
-          <InputBox onChange={onChangeName} value={nameReg} length='2'/>
-          <UnderTag draggable='true'>이름은 두글자가 넘어야 합니다.</UnderTag>
-        </GridCell>
+        <GridRow>
+          <GridCell>
+            <Tag>이름</Tag>
+            <InputBox onChange={onChangeName} value={nameReg} length='2' />
+            <UnderTag draggable='true'>두글자이상 입력해주세요!</UnderTag>
+          </GridCell>
 
-        <GridCell>
-          <Tag>생년월일</Tag>
-          <InputBox type='date' min='1950-01-01' max='2050-01-01'  onChange={onChangeDate} value={dateReg}/>
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
+          <GridCell>
+            <Tag>생년월일</Tag>
+            <InputBox type='date' min='1950-01-01' max='2050-01-01' onChange={onChangeDate} value={dateReg} />
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
 
-        <GridCell>
-          <Tag>전화번호</Tag>
-          <InputBox onChange={onChangePhone} value={phoneReg} length='11'/>
-          <UnderTag draggable='true'>번호만입력해주세요.</UnderTag>
-        </GridCell>
-      </GridRow>
+          <GridCell>
+            <Tag>전화번호</Tag>
+            <InputBox onChange={onChangePhone} value={phoneReg} length='11' />
+            <UnderTag draggable='true'>번호만입력해주세요.</UnderTag>
+          </GridCell>
+        </GridRow>
 
-      <GridRow>
-        <GridCell>
-        <AddressBox> 
-          <Tag>주소</Tag>
-          <Postcode onChangeAddress={onChangeAddress} />
-          </AddressBox>
-          <InputBox value={addressReg}></InputBox>
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
-        
-        <GridCell>
-          <Tag>상세주소</Tag>
-          <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
-          <UnderTag draggable='true'></UnderTag>
-        </GridCell>
-      </GridRow>
+        <GridRow>
+          <GridCell>
+            <AddressBox>
+              <Tag>주소</Tag>
+              <Postcode onChangeAddress={onChangeAddress} />
+            </AddressBox>
+            <InputBox value={addressReg}></InputBox>
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
 
-      <SubmitBtn onClick={() => {ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) }}>추가</SubmitBtn>
+          <GridCell>
+            <Tag>상세주소</Tag>
+            <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
+            <UnderTag draggable='true'></UnderTag>
+          </GridCell>
+        </GridRow>
+
+        <SubmitBtn onClick={() => { ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) }}>추가</SubmitBtn>
       </GridTable>
     </Container>
   )
@@ -167,6 +213,14 @@ const checkInputLengthFocus = (props) => {
   } else {
     return (`border: solid 1px #0058a3;
             box-shadow: 0px 0px 0px 1.5px #0058a3;`);
+  }
+}
+
+const checkInputLengthToEx = (props) => {
+  if (props.value.length !== 0 && props.value.length < props.length) {
+    return '#e00751;';
+  } else {
+    return 'grey;';
   }
 }
 

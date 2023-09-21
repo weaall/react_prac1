@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import styled from 'styled-components';
-import InputBox from './CustomerAddBox'
 
 function Postcode(props) {
   const open = useDaumPostcodePopup("https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
