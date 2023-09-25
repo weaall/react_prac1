@@ -9,9 +9,9 @@ function CustomerAddBox() {
   const navigate = useNavigate();
 
   const [regoBrandReg, setregoBrandReg] = useState('회원구분 🍊')
-  const [regoGroupReg, setregoGroupReg] = useState('회원소속 🍊')
+  const [regoGroupReg, setregoGroupReg] = useState('')
   const [regoNumReg, setregoNumReg] = useState('')
-  const [regoGradeReg, setregoGradeReg] = useState('회원등급 🍊')
+  const [regoGradeReg, setregoGradeReg] = useState('')
   const [nameReg, setNameReg] = useState('')
   const [dateReg, setDateReg] = useState('')
   const [phoneReg, setPhoneReg] = useState('')
@@ -69,7 +69,7 @@ function CustomerAddBox() {
               <option value="하나로오케이리조트">하나로오케이리조트</option>
               <option value="라마다">라마다</option>
             </SelectBox>
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
           </GridCell>
 
           <GridCell>
@@ -94,7 +94,7 @@ function CustomerAddBox() {
                   : null
               }
             </SelectBox>
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
           </GridCell>
         </GridRow>
 
@@ -102,7 +102,7 @@ function CustomerAddBox() {
           <GridCell>
             <Tag>회원번호</Tag>
             <InputBox onChange={onChangeRegoNum} value={regoNumReg} />
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
           </GridCell>
 
           <GridCell>
@@ -147,7 +147,7 @@ function CustomerAddBox() {
                   : null
               }
             </SelectBox>
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
           </GridCell>
         </GridRow>
 
@@ -155,19 +155,19 @@ function CustomerAddBox() {
           <GridCell>
             <Tag>이름</Tag>
             <InputBox onChange={onChangeName} value={nameReg} length='2' />
-            <UnderTag draggable='true'>두글자이상 입력해주세요!</UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>두글자이상 입력해주세요!</UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>생년월일</Tag>
             <InputBox type='date' min='1950-01-01' max='2050-01-01' onChange={onChangeDate} value={dateReg} />
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>전화번호</Tag>
             <InputBox onChange={onChangePhone} value={phoneReg} length='11' />
-            <UnderTag draggable='true'>번호만입력해주세요.</UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>번호만입력해주세요.</UnderTag>
           </GridCell>
         </GridRow>
 
@@ -178,13 +178,13 @@ function CustomerAddBox() {
               <Postcode onChangeAddress={onChangeAddress} />
             </AddressBox>
             <InputBox value={addressReg}></InputBox>
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>상세주소</Tag>
             <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
-            <UnderTag draggable='true'></UnderTag>
+            <UnderTag draggable='true' value={addressDetailReg} length='0'></UnderTag>
           </GridCell>
         </GridRow>
 
@@ -220,7 +220,7 @@ const checkInputLengthToEx = (props) => {
   if (props.value.length !== 0 && props.value.length < props.length) {
     return '#e00751;';
   } else {
-    return 'grey;';
+    return 'white;';
   }
 }
 
@@ -253,6 +253,7 @@ font-size: 0.8rem;
 const UnderTag = styled.p`
 font-size: 0.5rem;
 margin: 2px 0 20px 5px;
+color: ${checkInputLengthToEx}
 `
 const InputBox = styled.input`
     width: 100%;
