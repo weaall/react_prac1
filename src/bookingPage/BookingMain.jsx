@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useNavigate } from "react-router-dom";
 
 
-function Login() {
+function BookingMain() {
 
     const navigate = useNavigate();
 
@@ -29,25 +29,22 @@ function Login() {
 
     return (
         <Container>
-            <LoginContainer>
-                <Title draggable='true'>통합 예약 시스템</Title>
-                <Tag draggable='true'>회원번호</Tag>
-                <InputBox value={regoNumCall} onChange={onChangeRegoNum} length='15' maxLength='15'/>
-                <UnderTag draggable='true' value={regoNumCall} length='15'>
-                    -을 제외한 회원번호 14자리를 입력해 주세요.
-                </UnderTag>
-                <BtnBox>
-                    <SubmitBtn onClick={() => navigate('/BookingMain')}>로그인
-                    </SubmitBtn>
-                </BtnBox>
-            </LoginContainer>
+            <MainContainer>
+                <BookingHeader>
+                    <Title draggable='true'>브랜드</Title>
+                    <RegoNum>123456-12345678</RegoNum>
+                    <RegoGrade>등급</RegoGrade>
+                    <MypageBtn>MyPage</MypageBtn>
+                </BookingHeader>
+                <InputBox value={regoNumCall} onChange={onChangeRegoNum} length='15' maxLength='15' />
+            </MainContainer>
         </Container>
 
     );
 }
 
 
-export default Login;
+export default BookingMain;
 
 const checkInputLength = (props) => {
     if (props.value.length !== 0 && props.value.length < props.length) {
@@ -75,11 +72,17 @@ const checkInputLengthToEx = (props) => {
     }
   }
 
+const BookingHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    border-bottom: solid 1px black;
+`
 
 const Container = styled.div`
     font-family: Arial, Helvetica, sans-serif;
 `
-const LoginContainer = styled.div`
+const MainContainer = styled.div`
     margin: auto;
     position: absolute;
     top: 50%;
@@ -87,9 +90,18 @@ const LoginContainer = styled.div`
     transform: translate(-50%,-50%);
     padding: 50px 0px;
 `
-const Title = styled.h1`
-    text-align: center;
-    margin: 0 0 50px 0px;
+const Title = styled.p`
+`
+const RegoNum = styled.p`
+    font-size: 15px;
+`
+const RegoGrade = styled.p`
+    font-size: 15px;
+`
+const MypageBtn = styled.button`
+    border: none;
+    background-color: white;
+    cursor: pointer;
 `
 
 const Tag = styled.p`

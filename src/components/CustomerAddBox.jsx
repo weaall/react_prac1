@@ -234,6 +234,7 @@ const GridTable = styled.div`
   display: grid;
   width: 800px;
   justify-items: center;
+  
 `
 const GridRow = styled.div`
 display: flex;
@@ -272,8 +273,8 @@ const InputBox = styled.input`
     }
 `
 const SelectBox = styled.select`
-border: solid 1px black;
-position: relative;
+    border: solid 1px black;
+    position: relative;
     width: 105%;
     font-size: 1rem;
     border-radius: 4px;

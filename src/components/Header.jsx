@@ -18,7 +18,7 @@ function Header() {
             </ContainerLi>
             <Divider></Divider>
             <ContainerLi>
-                <Link to={'/test'}>
+                <Link to={'/'}>
                     <ListBtn>제휴관리</ListBtn>
                 </Link>
             </ContainerLi>
@@ -44,7 +44,7 @@ const HeaderStyle = styled.div`
     width: 100%;
     background-color: #0058a3;
     color: white;
-    text-align: center;
+    justify-content: center;
     display: flex;
 `;
 
