@@ -69,13 +69,12 @@ function CustomerAddBox() {
               <option value="하나로오케이리조트">하나로오케이리조트</option>
               <option value="라마다">라마다</option>
             </SelectBox>
-            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>sad</UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>회원소속</Tag>
             <SelectBox onChange={onChangeRegoGroup} value={regoGroupReg}>
-              <option disabled selected>회원소속 🍊</option>
               {
                 regoBrandReg === '신원리조트' || '오션스타리조트' || '하나로오케이리조트'
                   ? <>
@@ -94,7 +93,7 @@ function CustomerAddBox() {
                   : null
               }
             </SelectBox>
-            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
           </GridCell>
         </GridRow>
 
@@ -102,13 +101,12 @@ function CustomerAddBox() {
           <GridCell>
             <Tag>회원번호</Tag>
             <InputBox onChange={onChangeRegoNum} value={regoNumReg} />
-            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>회원등급</Tag>
             <SelectBox onChange={onChangeRegoGrade} value={regoGradeReg}>
-              <option disabled selected>회원등급 🍊</option>
               {
                 regoBrandReg === '신원리조트'
                   ? <>
@@ -147,7 +145,7 @@ function CustomerAddBox() {
                   : null
               }
             </SelectBox>
-            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
           </GridCell>
         </GridRow>
 
@@ -161,13 +159,13 @@ function CustomerAddBox() {
           <GridCell>
             <Tag>생년월일</Tag>
             <InputBox type='date' min='1950-01-01' max='2050-01-01' onChange={onChangeDate} value={dateReg} />
-            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
+            <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>전화번호</Tag>
-            <InputBox onChange={onChangePhone} value={phoneReg} length='11' />
-            <UnderTag draggable='true' value={nameReg} length='2'>번호만입력해주세요.</UnderTag>
+            <InputBox onChange={onChangePhone} value={phoneReg} length='11' type="number" max="99999999999" />
+            <UnderTag draggable='true' value={phoneReg} length='11'>번호만입력해주세요.</UnderTag>
           </GridCell>
         </GridRow>
 
@@ -178,13 +176,13 @@ function CustomerAddBox() {
               <Postcode onChangeAddress={onChangeAddress} />
             </AddressBox>
             <InputBox value={addressReg}></InputBox>
-            <UnderTag draggable='true' value={nameReg} length='2'></UnderTag>
+            <UnderTag draggable='true' onChangeAddress={onChangeAddress} value={addressReg} length='2'></UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>상세주소</Tag>
             <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
-            <UnderTag draggable='true' value={addressDetailReg} length='0'></UnderTag>
+            <UnderTag draggable='true' onChange={onChangeAddressDetail} value={addressDetailReg} length='0'></UnderTag>
           </GridCell>
         </GridRow>
 
@@ -202,7 +200,7 @@ const checkInputLength = (props) => {
   if (props.value.length !== 0 && props.value.length < props.length) {
     return 'solid 1px #e00751;';
   } else {
-    return 'solid 1px black';
+    return 'solid 1px black;';
   }
 }
 

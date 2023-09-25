@@ -4,6 +4,7 @@ import CustomerList from "./components/CustomerList";
 import CustomerAddBox from "./components/CustomerAddBox";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Header from './components/Header'
+import Login from "./bookingPage/LoginPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CustomerList />} />
           <Route path="/CustomerAdd" element={<CustomerAddBox />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </div>
     </BrowserRouter>

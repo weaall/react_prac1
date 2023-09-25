@@ -27,7 +27,7 @@ app.get("/member_table", (req, res) => {
 
 app.get("/member_table/name", (req, res) => {
   console.log("/member_table/name");
-  db.query("SELECT * FROM member_table", function (err, rows) {
+  db.query("select * from member_table", function (err, rows) {
     if (!err) {
       console.log(rows[0].name);
       res.send(rows[0].name);

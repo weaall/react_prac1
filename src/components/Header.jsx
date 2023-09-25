@@ -24,6 +24,12 @@ function Header() {
             </ContainerLi>
             <Divider></Divider>
             <ContainerLi>
+                <Link to={'/Login'}>
+                    <ListBtn>제휴예약</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
                 <Link to={'/customerAdd'}>
                     <ListBtn>회원추가</ListBtn>
                 </Link>
