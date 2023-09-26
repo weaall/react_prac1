@@ -32,55 +32,54 @@ function BookingMain() {
             <MainContainer>
                 <BookingHeader>
                     <Title draggable='true'>브랜드</Title>
-                    <RegoNum>123456-12345678</RegoNum>
-                    <RegoGrade>등급</RegoGrade>
-                    <MypageBtn>MyPage</MypageBtn>
+                    <RegoContainer>
+                        <RegoNum>123456-12345678</RegoNum>
+                        <RegoGrade>브랜드등급</RegoGrade>
+                    </RegoContainer>
+                    <MypageBtn onClick={() => alert('미구현')}>MyPage</MypageBtn>
                 </BookingHeader>
-                <InputBox value={regoNumCall} onChange={onChangeRegoNum} length='15' maxLength='15' />
+                <SelectContainer>
+                    <SelectContainerCell1>
+                        <SelectRegion>🔍
+                        </SelectRegion>
+                    </SelectContainerCell1>
+                    <SelectContainerCell2>
+                        <SelectStartDate>📅
+                        </SelectStartDate>
+                        <SelectEndDate>📅
+                        </SelectEndDate>
+                    </SelectContainerCell2>
+                </SelectContainer>
+                <HotelList>
+                    <HotelContainer>
+                        <HotelPic></HotelPic>
+                        <HotelInfo></HotelInfo>
+                    </HotelContainer>
+                    <HotelContainer>
+                        <HotelPic></HotelPic>
+                        <HotelInfo></HotelInfo>
+                    </HotelContainer>
+                    <HotelContainer>
+                        <HotelPic></HotelPic>
+                        <HotelInfo></HotelInfo>
+                    </HotelContainer>
+                    <HotelContainer>
+                        <HotelPic></HotelPic>
+                        <HotelInfo></HotelInfo>
+                    </HotelContainer>
+                </HotelList>
             </MainContainer>
         </Container>
-
     );
 }
 
 
 export default BookingMain;
 
-const checkInputLength = (props) => {
-    if (props.value.length !== 0 && props.value.length < props.length) {
-      return 'solid 1px #e00751;';
-    } else {
-      return 'solid 1px black;';
-    }
-  }
-  
-  const checkInputLengthFocus = (props) => {
-    if (props.value.length !== 0 && props.value.length < props.length) {
-      return (`border: solid 1px #e00751;
-              box-shadow: 0px 0px 0px 1.5px #e00751;`);
-    } else {
-      return (`border: solid 1px #0058a3;
-              box-shadow: 0px 0px 0px 1.5px #0058a3;`);
-    }
-  }
-
-const checkInputLengthToEx = (props) => {
-    if (props.value.length !== 0 && props.value.length < props.length) {
-      return '#e00751;';
-    } else {
-      return 'white;';
-    }
-  }
-
-const BookingHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    border-bottom: solid 1px black;
-`
-
 const Container = styled.div`
     font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    
 `
 const MainContainer = styled.div`
     margin: auto;
@@ -88,65 +87,97 @@ const MainContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    padding: 50px 0px;
+    background-color: #f7f7f7;
+    width: 100%;
+    max-width: 600px;
+`
+const BookingHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+    align-items: center;
+    border-bottom: solid 0.5px #dadada;
 `
 const Title = styled.p`
+    font-size: 1.5rem;
+    margin: 0 0 0 15px;
+`
+const RegoContainer = styled.div`
+    text-align: center;
+    width: 150px;
 `
 const RegoNum = styled.p`
-    font-size: 15px;
+    font-size: 0.8rem;
+    margin: 0;
 `
 const RegoGrade = styled.p`
-    font-size: 15px;
+    font-size: 0.8rem;
+    margin: 0;
 `
 const MypageBtn = styled.button`
     border: none;
     background-color: white;
     cursor: pointer;
-`
-
-const Tag = styled.p`
-    margin: 0 0 5px 0;
-    font-size: 1rem;
-`
-const InputBox = styled.input`
-    width: 300px;
-    border: ${checkInputLength};
-    font-size: 1rem;
-    border-radius: 4px;
-    flex-grow: 1;
-    height: 3rem;
-    outline: none;
-    overflow: hidden;
     padding: 0;
-    padding-inline-end: 0.5rem;
-    padding-inline-start: 0.5rem;
-    background: none;
-    &:focus {
-        outline: none;
-        ${checkInputLengthFocus};
-    }
-`
-const UnderTag = styled.p`
-    font-size: 0.8rem;
-    margin: 5px 0 20px 5px;
-    color: ${checkInputLengthToEx};
-`
-
-const BtnBox = styled.div`
-    margin-top: 50px;
-    text-align: center;
-`
-
-const SubmitBtn = styled.button`
     font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    border-radius: 64px;
-    justify-content: center;
-    min-height: 3.5rem;
-    width: 300px;
-    border: none;
-    background-color: #0058a3;
-    color: white;
-    cursor: pointer;
+    margin: 0 15px 0 0;
+`
+const SelectContainer = styled.div`
+    margin: 1rem;
+    border-radius: 8px;
+    height: 6rem;
+    background-color: white;
+    box-shadow: 0 0 4px black;
+`
+const SelectContainerCell1 = styled.div`
+    display: flex;    
+    align-items: center;
+    border-bottom: 0.5px solid grey;
+    height: 50%;
+`
+const SelectContainerCell2 = styled.div`
+    display: flex;
+    height: 50%;
+`
+const SelectRegion = styled.div` 
+    width: 100%;
+    margin: 0 15px;
+    align-items: center;
+    display: flex;
+    margin: 0 10px;
+`
+const SelectStartDate = styled.div` 
+    width: 50%;
+    height: 100%;
+    border-right: 0.5px solid grey;
+    margin-inline-start: 10px;
+    align-items: center;
+    display: flex;
+`
+const SelectEndDate = styled.div` 
+    width: 50%;
+    height: 100%;
+    margin-inline-start: 10px;
+    align-items: center;
+    display: flex;
+`
+const HotelList = styled.div`
+`
+const HotelContainer = styled.div`
+    margin: 1rem;
+    border-radius: 8px;
+    height: 10rem;
+    background-color: white;
+    box-shadow: 0px 0px transparent;
+    display: flex;
+`
+const HotelPic =styled.div`
+    background-color: grey;
+    border-radius: 8px;
+    width: 30%;
+`
+const HotelInfo =styled.div`
 `
