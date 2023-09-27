@@ -30,7 +30,7 @@ function Login() {
     return (
         <Container>
             <LoginContainer>
-                <Title draggable='true'>통합 예약 시스템</Title>
+                <Title draggable='true'>통합예약 시스템</Title>
                 <Tag draggable='true'>회원번호</Tag>
                 <InputBox value={regoNumCall} onChange={onChangeRegoNum} length='15' maxLength='15'/>
                 <UnderTag draggable='true' value={regoNumCall} length='15'>
