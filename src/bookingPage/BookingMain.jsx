@@ -50,22 +50,78 @@ function BookingMain() {
                         </SelectEndDate>
                     </SelectContainerCell2>
                 </SelectContainer>
+                <SortContainer>
+                    <SortBtn><p>정렬</p>
+                    </SortBtn>
+                    <FilterBtn><p>필터</p>
+                    </FilterBtn>
+                </SortContainer>
                 <HotelList>
                     <HotelContainer>
                         <HotelPic></HotelPic>
-                        <HotelInfo></HotelInfo>
+                        <HotelInfo>
+                            <HotelName>호텔이름</HotelName>
+                            <HotelLocate>위치</HotelLocate>
+                            <HotelMinPriceBox>
+                            <HotelMinPrice>최소가격</HotelMinPrice>
+                            <HotelBookingBtn>예약하기👉</HotelBookingBtn>
+                            </HotelMinPriceBox>
+                        </HotelInfo>
                     </HotelContainer>
                     <HotelContainer>
                         <HotelPic></HotelPic>
-                        <HotelInfo></HotelInfo>
+                        <HotelInfo>
+                            <HotelName>호텔이름</HotelName>
+                            <HotelLocate>위치</HotelLocate>
+                            <HotelMinPriceBox>
+                            <HotelMinPrice>최소가격</HotelMinPrice>
+                            <HotelBookingBtn>예약하기👉</HotelBookingBtn>
+                            </HotelMinPriceBox>
+                        </HotelInfo>
                     </HotelContainer>
                     <HotelContainer>
                         <HotelPic></HotelPic>
-                        <HotelInfo></HotelInfo>
+                        <HotelInfo>
+                            <HotelName>호텔이름</HotelName>
+                            <HotelLocate>위치</HotelLocate>
+                            <HotelMinPriceBox>
+                            <HotelMinPrice>최소가격</HotelMinPrice>
+                            <HotelBookingBtn>예약하기👉</HotelBookingBtn>
+                            </HotelMinPriceBox>
+                        </HotelInfo>
                     </HotelContainer>
                     <HotelContainer>
                         <HotelPic></HotelPic>
-                        <HotelInfo></HotelInfo>
+                        <HotelInfo>
+                            <HotelName>호텔이름</HotelName>
+                            <HotelLocate>위치</HotelLocate>
+                            <HotelMinPriceBox>
+                            <HotelMinPrice>최소가격</HotelMinPrice>
+                            <HotelBookingBtn>예약하기👉</HotelBookingBtn>
+                            </HotelMinPriceBox>
+                        </HotelInfo>
+                    </HotelContainer>
+                    <HotelContainer>
+                        <HotelPic></HotelPic>
+                        <HotelInfo>
+                            <HotelName>호텔이름</HotelName>
+                            <HotelLocate>위치</HotelLocate>
+                            <HotelMinPriceBox>
+                            <HotelMinPrice>최소가격</HotelMinPrice>
+                            <HotelBookingBtn>예약하기👉</HotelBookingBtn>
+                            </HotelMinPriceBox>
+                        </HotelInfo>
+                    </HotelContainer>
+                    <HotelContainer>
+                        <HotelPic></HotelPic>
+                        <HotelInfo>
+                            <HotelName>호텔이름</HotelName>
+                            <HotelLocate>위치</HotelLocate>
+                            <HotelMinPriceBox>
+                            <HotelMinPrice>최소가격</HotelMinPrice>
+                            <HotelBookingBtn>예약하기👉</HotelBookingBtn>
+                            </HotelMinPriceBox>
+                        </HotelInfo>
                     </HotelContainer>
                 </HotelList>
             </MainContainer>
@@ -83,10 +139,6 @@ const Container = styled.div`
 `
 const MainContainer = styled.div`
     margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     background-color: #f7f7f7;
     width: 100%;
     max-width: 600px;
@@ -145,7 +197,6 @@ const SelectContainerCell2 = styled.div`
 const SelectRegion = styled.div` 
     width: 100%;
     margin: 0 15px;
-    align-items: center;
     display: flex;
     margin: 0 10px;
 `
@@ -164,6 +215,27 @@ const SelectEndDate = styled.div`
     align-items: center;
     display: flex;
 `
+const SortContainer = styled.div`
+    margin: 1rem 6rem;
+    border-radius: 8px;
+    height: 3.5rem;
+    background-color: white;
+    display: flex;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+`
+const SortBtn = styled.div`
+    width: 50%;
+    height: 100%;
+    border-right: solid 0.5px grey;
+`
+const FilterBtn = styled.div`
+    width: 50%;
+    height: 100%;
+`
 const HotelList = styled.div`
 `
 const HotelContainer = styled.div`
@@ -177,7 +249,31 @@ const HotelContainer = styled.div`
 const HotelPic =styled.div`
     background-color: grey;
     border-radius: 8px;
-    width: 30%;
+    width: 40%;
 `
 const HotelInfo =styled.div`
+    margin: auto;
+    text-align: center;
+`
+const HotelName = styled.h2`
+`
+const HotelLocate = styled.h3` 
+    margin: 0px;
+`
+const HotelMinPriceBox = styled.div `
+    align-items: center;
+    display: flex;
+    position: relative;
+`
+const HotelMinPrice = styled.p` 
+`
+const HotelBookingBtn = styled.button`
+    margin-left: 50px;
+    border-radius: 4px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color: #0058a3;
+    color: white;
+    cursor: pointer;
 `
