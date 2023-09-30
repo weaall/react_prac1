@@ -13,7 +13,7 @@ function CustomerAddBox() {
   const [regoNumReg, setregoNumReg] = useState('')
   const [regoGradeReg, setregoGradeReg] = useState('')
   const [nameReg, setNameReg] = useState('')
-  const [dateReg, setDateReg] = useState('')
+  const [regoDateReg, setregoDateReg] = useState('')
   const [phoneReg, setPhoneReg] = useState('')
   const [addressReg, setAddressReg] = useState('')
   const [addressDetailReg, setAddressDetailReg] = useState('')
@@ -23,19 +23,23 @@ function CustomerAddBox() {
   const onChangeRegoNum = (e) => { setregoNumReg(e.target.value); };
   const onChangeRegoGrade = (e) => { setregoGradeReg(e.target.value); };
   const onChangeName = (e) => { setNameReg(e.target.value); };
-  const onChangeDate = (e) => { setDateReg(e.target.value); };
+  const onChangeDate = (e) => { setregoDateReg(e.target.value); };
   const onChangePhone = (e) => { setPhoneReg(e.target.value); };
-  const onChangeAddressDetail = (e) => { setAddressDetailReg(e.target.value); };
   const onChangeAddress = num => { setAddressReg(num); };
+  const onChangeAddressDetail = (e) => { setAddressDetailReg(e.target.value); };
 
 
-  const insertData = async (insertName, insertDate, insertAddress, insertPhone) => {
+  const insertData = async (regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) => {
     await axios.post("/insert", {
-      name: insertName,
-      date: insertDate,
-      address: insertAddress,
-      phone: insertPhone
-
+      regoBrand: regoBrandReg,
+      regoGroup: regoGroupReg,
+      regoNum: regoNumReg,
+      regoGrade: regoGradeReg,
+      name: nameReg,
+      regoDate: regoDateReg,
+      phone: phoneReg,
+      address: addressReg,
+      addressDetail: addressDetailReg
     }).then(function (response) {
       console.log(response);
     })
@@ -44,9 +48,9 @@ function CustomerAddBox() {
       });
   }
 
-  function ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) {
+  function ConfirmAlert(regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) {
     if (window.confirm('추가하시겠습니까?')) {
-      insertData(nameReg, dateReg, addressReg, phoneReg)
+      insertData(regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg)
       navigate('/');
     } else {
       return;
@@ -158,7 +162,7 @@ function CustomerAddBox() {
 
           <GridCell>
             <Tag>생년월일</Tag>
-            <InputBox type='date' min='1950-01-01' max='2050-01-01' onChange={onChangeDate} value={dateReg} />
+            <InputBox type='date' min='1950-01-01' max='2050-01-01' onChange={onChangeDate} value={regoDateReg} />
             <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
           </GridCell>
 
@@ -186,7 +190,7 @@ function CustomerAddBox() {
           </GridCell>
         </GridRow>
 
-        <SubmitBtn onClick={() => { ConfirmAlert(nameReg, dateReg, addressReg, phoneReg) }}>추가</SubmitBtn>
+        <SubmitBtn onClick={() => { ConfirmAlert(regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) }}>추가</SubmitBtn>
       </GridTable>
     </Container>
   )

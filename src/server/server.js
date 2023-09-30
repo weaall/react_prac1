@@ -40,12 +40,18 @@ app.get("/member_table/name", (req, res) => {
 app.post("/insert", (req, res) => {
   console.log("고객데이터 삽입");
   console.log(req.body);
+  const regoBrand = req.body.regoBrand;
+  const regoGroup = req.body.regoGroup;
+  const regoNum = req.body.regoNum;
+  const regoGrade = req.body.regoGrade;
   const name = req.body.name;
-  const date = req.body.date;
-  const address = req.body.address;
+  const regoDate = req.body.regoDate;
   const phone = req.body.phone;
+  const address = req.body.address;
+  const addressDetail = req.body.addressDetail;
   db.query(
-    `INSERT INTO member_table (name, date, address, phone) VALUES('${name}','${date}','${address}','${phone}');`,
+    `INSERT INTO member_table (regoBrand, regoGroup, regoNum, regoGrade, name, regoDate, phone, address, addressDetail) 
+    VALUES('${regoBrand}','${regoGroup}','${regoNum}','${regoGrade}','${name}','${regoDate}','${phone}','${address}','${addressDetail}');`,
     (err, result) => {
       res.send(result);
     }
