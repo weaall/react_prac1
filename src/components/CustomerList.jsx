@@ -36,10 +36,15 @@ function CustomerList() {
                 <TableHead>
                     <TableRow>
                         <TableHeadCell>ID</TableHeadCell>
-                        <TableHeadCell>가입일</TableHeadCell>
+                        <TableHeadCell>구분</TableHeadCell>
+                        <TableHeadCell>소속</TableHeadCell>
+                        <TableHeadCell>번호</TableHeadCell>
+                        <TableHeadCell>등급</TableHeadCell>
                         <TableHeadCell>이름</TableHeadCell>
-                        <TableHeadCell>주소</TableHeadCell>
+                        <TableHeadCell>생년월일</TableHeadCell>
                         <TableHeadCell>전화번호</TableHeadCell>
+                        <TableHeadCell>주소</TableHeadCell>
+                        <TableHeadCell>상세주소</TableHeadCell>
                         <TableHeadCell>설정</TableHeadCell>
                     </TableRow>
                 </TableHead>
@@ -48,10 +53,15 @@ function CustomerList() {
                         return (
                             <TableRow key={myMap.id}>
                                 <TableCell>{myMap.id}</TableCell>
-                                <TableCell>{myMap.date}</TableCell>
+                                <TableCell>{myMap.regoBrand}</TableCell>
+                                <TableCell>{myMap.regoGroup}</TableCell>
+                                <TableCell>{myMap.regoNum}</TableCell>
+                                <TableCell>{myMap.regoGrade}</TableCell>
                                 <TableCell>{myMap.name}</TableCell>
-                                <TableCell>{myMap.address}</TableCell>
+                                <TableCell>{myMap.regoDate}</TableCell>
                                 <TableCell>{myMap.phone}</TableCell>
+                                <TableCell>{myMap.address}</TableCell>
+                                <TableCell>{myMap.addressDetail}</TableCell>
                                 <TableCell>
                                     <button onClick={() => deleteData(myMap.id)}>삭제</button>
                                 </TableCell>
