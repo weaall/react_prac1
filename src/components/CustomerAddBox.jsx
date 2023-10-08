@@ -20,13 +20,22 @@ function CustomerAddBox() {
 
   const onChangeRegoBrand = (e) => { setregoBrandReg(e.target.value); };
   const onChangeRegoGroup = (e) => { setregoGroupReg(e.target.value); };
-  const onChangeRegoNum = (e) => { setregoNumReg(e.target.value); };
+  const onChangeRegoNum = (e) => {
+    setregoNumReg(e.target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/(\d{6})(\d{8})/, '$1-$2'));
+  };
   const onChangeRegoGrade = (e) => { setregoGradeReg(e.target.value); };
   const onChangeName = (e) => { setNameReg(e.target.value); };
   const onChangeDate = (e) => { setregoDateReg(e.target.value); };
-  const onChangePhone = (e) => { setPhoneReg(e.target.value); };
+  const onChangePhone = (e) => {
+    setPhoneReg(e.target.value.replace(/[^0-9]/g, '')
+      .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+  };
   const onChangeAddress = num => { setAddressReg(num); };
   const onChangeAddressDetail = (e) => { setAddressDetailReg(e.target.value); };
+
+
 
 
   const insertData = async (regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) => {
@@ -104,8 +113,8 @@ function CustomerAddBox() {
         <GridRow>
           <GridCell>
             <Tag>회원번호</Tag>
-            <InputBox onChange={onChangeRegoNum} value={regoNumReg} />
-            <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
+            <InputBox onChange={onChangeRegoNum} value={regoNumReg} length='14' maxLength='15'/>
+            <UnderTag draggable='true' value={regoNumReg} length='14'>-을 제회한 숫자만 입력해주세요.</UnderTag>
           </GridCell>
 
           <GridCell>
@@ -168,8 +177,8 @@ function CustomerAddBox() {
 
           <GridCell>
             <Tag>전화번호</Tag>
-            <InputBox onChange={onChangePhone} value={phoneReg} length='11' type="number" max="99999999999" />
-            <UnderTag draggable='true' value={phoneReg} length='11'>번호만입력해주세요.</UnderTag>
+            <InputBox onChange={onChangePhone} value={phoneReg} length='13' maxLength='13'/>
+            <UnderTag draggable='true' value={phoneReg} length='13'>번호만입력해주세요.</UnderTag>
           </GridCell>
         </GridRow>
 

@@ -88,20 +88,21 @@ const TableContainer = styled.div`
 `
 
 const Table = styled.table`
+    margin: 20px;
     display: inline-block;
-    padding: 50px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 15px;
 `
 
 const TableHead = styled.thead`
-    padding: 50px;
 `
 
 const TableHeadCell = styled.th`
-    padding: 10px 30px;
-    margin: none;
     background-color: #0058a3;
     color: white;
-    
+    text-align: center;
+    border: solid 1px #0058a3;
 `
 
 const TableBody = styled.tbody`
@@ -111,5 +112,8 @@ const TableRow = styled.tr`
 `
 
 const TableCell = styled.td`
-    text-align: center;
+    background-clip: padding-box;
+    padding: 2px;
+    border: 1px solid grey;
+    
 `

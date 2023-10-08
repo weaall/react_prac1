@@ -10,10 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 
       app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  console.log("root");
-});
-
 app.get("/member_table", (req, res) => {
   console.log("고객데이터 조회");
   db.query("select * from member_table", (err, data) => {
