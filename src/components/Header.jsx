@@ -18,7 +18,7 @@ function Header() {
             </ContainerLi>
             <Divider></Divider>
             <ContainerLi>
-                <Link to={'/'}>
+                <Link to={'/Main'}>
                     <ListBtn>제휴관리</ListBtn>
                 </Link>
             </ContainerLi>

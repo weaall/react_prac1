@@ -135,7 +135,6 @@ export default BookingMain;
 const Container = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
-    
 `
 const MainContainer = styled.div`
     margin: auto;
