@@ -1,51 +1,41 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PopupDom from './popUpDom';
 import PopupContent from './popUpContents';
+import { useState } from 'react';
  
-class Main extends Component {
-    constructor(props){
-        super(props);
-        
-        this.state = {
-            isOpenPopup: false,
-        }
- 
-        this.openPopup = this.openPopup.bind(this);
-        this.closePopup = this.closePopup.bind(this);
-    }
- 
-    openPopup(){
-        this.setState({
+function Main(props) {
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+
+    const openPopup = e =>{
+        setIsOpenPopup({
             isOpenPopup: true,
         })
     }
- 
-    closePopup(){
-        this.setState({
+
+    const closePopup = e =>{
+        setIsOpenPopup({
             isOpenPopup: false,
         })
     }
- 
-    render(){
-        return(
+
+    return (
+        <div>
+            <h2>Open Popup</h2>
             <div>
-                <h2>Open Popup</h2>
-                <div>
-                    <button type="button"
-                            id="popupDom"
-                            onClick={this.openPopup}
-                    >
-                        Click
-                    </button>
-                    {this.state.isOpenPopup &&
-                        <PopupDom>
-                            <PopupContent onClose={this.closePopup}/>
-                        </PopupDom>
-                    }
-                </div>
+                <button type="button"
+                    id="popupDom"
+                    onClick={openPopup}
+                >
+                    Click
+                </button>
+                {isOpenPopup &&
+                    <PopupDom>
+                        <PopupContent onClose={closePopup} />
+                    </PopupDom>
+                }
             </div>
-        );
-    }
+        </div>
+    );
 }
- 
+
 export default Main;
