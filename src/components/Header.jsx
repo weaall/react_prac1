@@ -18,7 +18,7 @@ function Header() {
             </ContainerLi>
             <Divider></Divider>
             <ContainerLi>
-                <Link to={'/Main'}>
+                <Link to={'/'}>
                     <ListBtn>제휴관리</ListBtn>
                 </Link>
             </ContainerLi>
@@ -32,6 +32,18 @@ function Header() {
             <ContainerLi>
                 <Link to={'/customerAdd'}>
                     <ListBtn>회원추가</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
+                <Link to={'/Main'}>
+                    <ListBtn>팝업관리</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
+                <Link to={'/Calendar'}>
+                    <ListBtn>제휴기입</ListBtn>
                 </Link>
             </ContainerLi>
         </HeaderStyle>

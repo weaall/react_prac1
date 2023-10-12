@@ -3,19 +3,15 @@ import PopupDom from './popUpDom';
 import PopupContent from './popUpContents';
 import { useState } from 'react';
  
-function Main(props) {
+function Main() {
     const [isOpenPopup, setIsOpenPopup] = useState(false);
 
-    const openPopup = e =>{
-        setIsOpenPopup({
-            isOpenPopup: true,
-        })
+    const openPopup = () =>{
+        setIsOpenPopup(true);
     }
 
-    const closePopup = e =>{
-        setIsOpenPopup({
-            isOpenPopup: false,
-        })
+    const closePopup = () =>{
+        setIsOpenPopup(false);
     }
 
     return (
@@ -30,7 +26,7 @@ function Main(props) {
                 </button>
                 {isOpenPopup &&
                     <PopupDom>
-                        <PopupContent onClose={closePopup} />
+                        <PopupContent getClose={closePopup} />
                     </PopupDom>
                 }
             </div>

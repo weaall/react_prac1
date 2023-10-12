@@ -1,29 +1,41 @@
-import React, {Component} from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
  
-class PopupContent extends Component {
-    render(){
+function PopupContent(props) {
+
+    const onClose = () => {
+        props.getClose(false)
+    }
         return(
             <PopUpContainer>
                 <PopUpAlign>
                     <div> 
                         <h2>This is Popup Title</h2>
                         <div>
-                            <button type="button" onClick={this.props.onClose}>close</button>
+                            <button type="button" onClick={onClose}>close</button>
                         </div>
                     </div>
                 </PopUpAlign>
             </PopUpContainer>
         );
-    }
 }
  
 export default PopupContent;
+
+const fadeIn = keyframes`
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+`;
 
 const PopUpContainer = styled.div`
     background-color: black;
     width: 100%;
     height: 100%;
+    animation: ${fadeIn} 1s ease-out;
 `
 const PopUpAlign = styled.div`
     display: relative;
