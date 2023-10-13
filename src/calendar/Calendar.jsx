@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 
 function Calendar() {
-
-    const date = new Date();
-    const viewYear = date.getFullYear();
-    const viewMonth = date.getMonth();
+    
+    const [date, setDate] = useState(new Date());
+    const [viewYear, setViewYear] = useState(date.getFullYear());
+    const [viewMonth, setViewMonth] = useState(date.getMonth());
     
     const prevLast = new Date(viewYear, viewMonth, 0);
     const thisLast = new Date(viewYear, viewMonth + 1, 0);
@@ -31,17 +31,42 @@ function Calendar() {
     }
 
     const dates = prevDates.concat(thisDates, nextDates);
+    const firstDateIndex = dates.indexOf(1);
+    const lastDateIndex = dates.indexOf(TLDate);
 
-    dates.map((date, i) => {
+    dates.forEach((date, i) => {
         dates[i] = `${date}`;
     })
+
+    const prevMonth = () => {
+        date.setMonth(date.getMonth() - 1);
+        setViewMonth(date.getMonth());
+    }
+
+    const nextMonth = () => {
+        date.setMonth(date.getMonth() + 1);
+        setViewMonth(date.getMonth());
+    }
+
+    const goToday = () => {
+        date.setMonth(new Date().getMonth());
+        setViewMonth(date.getMonth());
+        setDate(new Date());
+    }
 
     return (
         <Container>
             <MarkUp>캘린더</MarkUp>
             <CalendarContatiner>
-                <h2>{viewYear}년</h2>
-                <h2>{viewMonth + 1}월</h2>
+                <CalendarHeader>
+                    <h2>{viewYear}년</h2>
+                    <h2>{viewMonth + 1}월</h2>
+                    <CalendarNav>
+                        <NavBtn onClick={prevMonth}>&lt;</NavBtn>
+                        <NavTodayBtn onClick={goToday}>Today</NavTodayBtn>
+                        <NavBtn onClick={nextMonth}>&gt;</NavBtn>
+                    </CalendarNav>
+                </CalendarHeader>
                 <DaysContainer>
                     <DayContainer>일</DayContainer>
                     <DayContainer>월</DayContainer>
@@ -53,9 +78,19 @@ function Calendar() {
                 </DaysContainer>
                 <DatesContainer>
                     {dates.map((dataMap) => {
-                        return (
-                            <DateContainer onClick={() => console.log(dataMap)}>{dataMap}</DateContainer>
-                        )
+                        const condition = dataMap >= firstDateIndex && dataMap < lastDateIndex + 1
+                            ? 'this'
+                            : 'other';
+                        if (condition == 'other') {
+                            return (
+                                <DateContainerOthers onClick={() => console.log(dataMap)}>{dataMap}</DateContainerOthers>
+                            )
+                        }
+                        else {
+                            return (
+                                <DateContainer onClick={() => console.log(dataMap)}>{dataMap}</DateContainer>
+                            )
+                        }
                     })}
                 </DatesContainer>
             </CalendarContatiner>
@@ -75,17 +110,42 @@ const MarkUp = styled.h2`
 `
 const CalendarContatiner = styled.div`
     text-align: center;
-    width: 800px;
+    width: 600px;
+    margin: 50px;
+`
+const CalendarHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+const CalendarNav = styled.div`
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 5px;
+`
+const NavBtn = styled.button`
+    width: 28px;
+    height: 30px;
+    border: none;
+    font-size: 16px;
+    line-height: 34px;
+    background-color: transparent;
+    cursor: pointer;
+`
+const NavTodayBtn = styled.button`
+    width: 75px;
+    border: none;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    background-color: transparent;
+    cursor: pointer;
 `
 const DaysContainer = styled.div`
     display: flex;
     flex-flow: row wrap;
-    border-top: 1px solid grey;
-    border-right: 1px solid grey;
 `
 const DayContainer = styled.div`
-    width: calc((100% - 8px) / 7);
-    border-left: 1px solid grey;
+    width: calc(100% / 7);
     &:nth-child(7n +1){
         color: red;
     }
@@ -93,24 +153,29 @@ const DayContainer = styled.div`
         color: blue;
     }
 `
-
 const DatesContainer = styled.div`
     display: flex;
     flex-flow: row wrap;
     height: 500px;
-    border-top: 1px solid grey;
-    border-right: 1px solid grey;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
 `
 const DateContainer = styled.div`
-    width: calc((100% - 8px) / 7);
-    border-bottom: 1px solid grey;
-    border-left: 1px solid grey;
+    width: calc((100% - 8px) / 7) ;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
     &:nth-child(7n +1){
         color: red;
     }
     &:nth-child(7n){
         color: blue;
     }
+`
+const DateContainerOthers = styled.div`
+    width: calc((100% - 8px) / 7) ;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    opacity: 0.5;
 `
 
 
