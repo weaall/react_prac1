@@ -50,24 +50,13 @@ function Calendar() {
         setViewMonth(date.getMonth());
     }
 
-    const navMonth = (props) => {
+    const navMonth = (props) =>{
         if(props < 7){
             nextMonth();
         }else{
             prevMonth();
         }
     }
-
-    const findPrice = (element, year, month, day) => {
-        if(element.date === `${year}-${month}-${day}`){
-            return element.price;
-        }
-    }
-
-    const arr = [
-        {date: '2023-10-5', price : 20000},
-        {date: '2023-10-6', price : 18000}
-    ];
 
     return (
         <Container>
@@ -103,14 +92,8 @@ function Calendar() {
                             )
                         }
                         else {
-                            const setedPrice = arr.find((findDate) => {return findDate === `${viewYear}-${viewMonth + 1}-${date}`}).price;
                             return (
-                                <DateContainer onClick={() => console.log(viewYear+"-"+(viewMonth+1)+"-"+date)}>{date}
-                                    <PriceContainer>
-                                        <PriceInput></PriceInput>
-                                        <PriceCurrent>{setedPrice}</PriceCurrent>
-                                    </PriceContainer>
-                                </DateContainer>
+                                <DateContainer onClick={() => console.log(viewYear, viewMonth + 1, date)}>{date}</DateContainer>
                             )
                         }
                     })}
@@ -183,7 +166,6 @@ const DatesContainer = styled.div`
     border-right: 1px solid gray;
 `
 const DateContainer = styled.div`
-    display: grid;
     width: calc((100% - 8px) / 7) ;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
@@ -200,19 +182,6 @@ const DateContainerOthers = styled.div`
     border-left: 1px solid gray;
     color: white;
     background-color: lightgray;
-`
-const PriceContainer = styled.div`
-    height: auto;
-
-`
-const PriceInput = styled.input`
-    width: 80%;
-    height: 20px;
-    border: 1px solid gray;
-    border-radius: 4px;
-`
-const PriceCurrent = styled.p`
-    
 `
 
 
