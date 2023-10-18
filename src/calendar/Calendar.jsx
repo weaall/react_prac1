@@ -84,12 +84,7 @@ function Calendar() {
         {date: '2023-10-23', price: 15000},
         {date: '2023-10-24', price: 18000},
         {date: '2023-10-25', price: 11000},
-        {date: '2023-10-26', price: 12000},
-        {date: '2023-10-27', price: 13000},
-        {date: '2023-10-28', price: 14000},
-        {date: '2023-10-29', price: 15000},
-        {date: '2023-10-30', price: 18000},
-        {date: '2023-10-31', price: 11000},
+        {date: '2023-10-26', price: 12000}
     ];
 
     return (
@@ -126,10 +121,16 @@ function Calendar() {
                             )
                         }
                         else {
+                            const sample = arr.find(v => v.date === "0");
                             const setedDate = arr.find(v => v.date === `${viewYear}-${viewMonth+1}-${date}`);
-                            const setedPrice = setedDate.price;
+                            let setedPrice = [];
+                            if (setedDate === undefined){
+                                setedPrice = 0;
+                            } else {
+                                setedPrice = setedDate.price;
+                            }
                             return (
-                                <DateContainer onClick={() => console.log(viewYear+"-"+(viewMonth+1)+"-"+ date)}>{date}
+                                <DateContainer onClick={() => console.log(viewYear+"-"+(viewMonth+1)+"-"+ date + sample)}>{date}
                                     <PriceContainer>
                                         <PriceInput></PriceInput>
                                         <PriceCurrent>{setedPrice}</PriceCurrent>
@@ -141,6 +142,26 @@ function Calendar() {
                     })}
                 </DatesContainer>
             </CalendarContatiner>
+            <PriceSetContainer>
+                <WeekdaysPriceContainer>
+                    <ViewPrice>WeekdaysPrice
+                    </ViewPrice>
+                    <InsertPrice>
+                    </InsertPrice>
+                </WeekdaysPriceContainer>
+                <FridaysPriceContainer>
+                <ViewPrice>FridaysPrice
+                    </ViewPrice>
+                    <InsertPrice>
+                    </InsertPrice>
+                </FridaysPriceContainer>
+                <SaterdaysPriceContainer>
+                <ViewPrice>SaterdaysPrice
+                    </ViewPrice>
+                    <InsertPrice>
+                    </InsertPrice>
+                </SaterdaysPriceContainer>
+            </PriceSetContainer>
         </Container>
     )
 }
@@ -228,7 +249,6 @@ const DateContainerOthers = styled.div`
 `
 const PriceContainer = styled.div`
     height: auto;
-
 `
 const PriceInput = styled.input`
     width: 80%;
@@ -238,6 +258,23 @@ const PriceInput = styled.input`
 `
 const PriceCurrent = styled.p`
     
+`
+const PriceSetContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 600px;
+    margin: 50px;
+`
+const WeekdaysPriceContainer = styled.div`
+`
+const FridaysPriceContainer = styled.div`
+`
+const SaterdaysPriceContainer = styled.div`
+`
+const ViewPrice = styled.p`
+`
+const InsertPrice = styled.input`
 `
 
 
