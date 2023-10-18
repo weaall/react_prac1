@@ -58,15 +58,38 @@ function Calendar() {
         }
     }
 
-    const findPrice = (element, year, month, day) => {
-        if(element.date === `${year}-${month}-${day}`){
-            return element.price;
-        }
-    }
-
     const arr = [
-        {date: '2023-10-5', price : 20000},
-        {date: '2023-10-6', price : 18000}
+        {date: '2023-10-1', price: 11000},
+        {date: '2023-10-2', price: 12000},
+        {date: '2023-10-3', price: 13000},
+        {date: '2023-10-4', price: 14000},
+        {date: '2023-10-5', price: 15000},
+        {date: '2023-10-6', price: 18000},
+        {date: '2023-10-7', price: 11000},
+        {date: '2023-10-8', price: 12000},
+        {date: '2023-10-9', price: 13000},
+        {date: '2023-10-10', price: 14000},
+        {date: '2023-10-11', price: 15000},
+        {date: '2023-10-12', price: 18000},
+        {date: '2023-10-13', price: 11000},
+        {date: '2023-10-14', price: 12000},
+        {date: '2023-10-15', price: 13000},
+        {date: '2023-10-16', price: 14000},
+        {date: '2023-10-17', price: 15000},
+        {date: '2023-10-18', price: 18000},
+        {date: '2023-10-19', price: 11000},
+        {date: '2023-10-20', price: 12000},
+        {date: '2023-10-21', price: 13000},
+        {date: '2023-10-22', price: 14000},
+        {date: '2023-10-23', price: 15000},
+        {date: '2023-10-24', price: 18000},
+        {date: '2023-10-25', price: 11000},
+        {date: '2023-10-26', price: 12000},
+        {date: '2023-10-27', price: 13000},
+        {date: '2023-10-28', price: 14000},
+        {date: '2023-10-29', price: 15000},
+        {date: '2023-10-30', price: 18000},
+        {date: '2023-10-31', price: 11000},
     ];
 
     return (
@@ -103,12 +126,14 @@ function Calendar() {
                             )
                         }
                         else {
-                            const setedPrice = arr.find((findDate) => {return findDate === `${viewYear}-${viewMonth + 1}-${date}`}).price;
+                            const setedDate = arr.find(v => v.date === `${viewYear}-${viewMonth+1}-${date}`);
+                            const setedPrice = setedDate.price;
                             return (
-                                <DateContainer onClick={() => console.log(viewYear+"-"+(viewMonth+1)+"-"+date)}>{date}
+                                <DateContainer onClick={() => console.log(viewYear+"-"+(viewMonth+1)+"-"+ date)}>{date}
                                     <PriceContainer>
                                         <PriceInput></PriceInput>
                                         <PriceCurrent>{setedPrice}</PriceCurrent>
+                                        <PriceCurrent>{}</PriceCurrent>
                                     </PriceContainer>
                                 </DateContainer>
                             )
