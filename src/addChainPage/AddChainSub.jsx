@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 
-function Calendar() {
+function AddChainSub() {
     
     const [date, setDate] = useState(new Date());
     const [viewYear, setViewYear] = useState(date.getFullYear());
@@ -58,7 +58,7 @@ function Calendar() {
         }
     }
 
-    const arr = [
+    let arr = [
         {date: '2023-10-1', price: 11000},
         {date: '2023-10-2', price: 12000},
         {date: '2023-10-3', price: 13000},
@@ -87,9 +87,16 @@ function Calendar() {
         {date: '2023-10-26', price: 12000}
     ];
 
+    const [newPrice, setNewPrice] = useState();
+    const [newPriceInput, setNewPriceInput] = useState();
+
+    const onChangeNewPriceInput = (e) => {
+        setNewPriceInput(e.target.value.replace(/[^0-9]/g, ''));
+      };
+
     return (
         <Container>
-            <MarkUp>캘린더</MarkUp>
+            <MarkUp>제휴객실</MarkUp>
             <InnetContainer>
                 <CalendarContatiner>
                     <CalendarHeader>
@@ -125,40 +132,55 @@ function Calendar() {
                                 const viewToday = new Date();
                                 const setedDate = arr.find(v => v.date === `${viewYear}-${viewMonth + 1}-${date}`);
                                 let setedPrice = [];
+
                                 if (setedDate === undefined) {
                                     setedPrice = 0;
                                 } else {
                                     setedPrice = setedDate.price;
                                 }
-                                return (
-                                    <DateContainer onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date)}>{date}
-                                        <PriceContainer>
-                                            <PriceInput></PriceInput>
-                                            <PriceInputBtn>+</PriceInputBtn>
-                                        </PriceContainer>
-                                        <PriceCurrent>{setedPrice}</PriceCurrent>
-                                        <PriceCurrent>{viewToday.getMonth()}</PriceCurrent>
-                                    </DateContainer>
-                                )
+
+                                if ((viewToday.getMonth() === viewMonth) && (viewToday.getDate() === date)) {
+                                    return (
+                                        <DateContainerToday onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date)}>{date}
+                                            <PriceContainer>
+                                                <PriceInput onChange={onChangeNewPriceInput} value={newPriceInput} maxLength='6'></PriceInput>
+                                                <PriceInputBtn onClick={() => arr.map((item) => item.date === `${viewYear}-${viewMonth + 1}-${date}` ? { ...item, price: {newPriceInput}} : item)}>+</PriceInputBtn>
+                                            </PriceContainer>
+                                            <PriceCurrent>{arr.find(v => v.date === `${viewYear}-${viewMonth + 1}-${date}`).price}</PriceCurrent>
+                                            
+                                        </DateContainerToday>
+                                    )
+
+                                } else {
+                                    return (
+                                        <DateContainer onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date)}>{date}
+                                            <PriceContainer>
+                                                <PriceInput onChange={onChangeNewPriceInput} value={newPriceInput} maxLength='6'></PriceInput>
+                                                <PriceInputBtn>+</PriceInputBtn>
+                                            </PriceContainer>
+                                            <PriceCurrent>{setedPrice}</PriceCurrent>
+                                        </DateContainer>
+                                    )
+                                }
                             }
                         })}
                     </DatesContainer>
                 </CalendarContatiner>
                 <PriceSetContainer>
                     <WeekdaysPriceContainer>
-                        <ViewPrice>WeekdaysPrice
+                        <ViewPrice>주중가격
                         </ViewPrice>
                         <InsertPrice>
                         </InsertPrice>
                     </WeekdaysPriceContainer>
                     <FridaysPriceContainer>
-                        <ViewPrice>FridaysPrice
+                        <ViewPrice>금요일
                         </ViewPrice>
                         <InsertPrice>
                         </InsertPrice>
                     </FridaysPriceContainer>
                     <SaterdaysPriceContainer>
-                        <ViewPrice>SaterdaysPrice
+                        <ViewPrice>토요일
                         </ViewPrice>
                         <InsertPrice>
                         </InsertPrice>
@@ -169,7 +191,7 @@ function Calendar() {
     )
 }
 
-export default Calendar;
+export default AddChainSub;
 
 
 const Container = styled.div`
@@ -247,12 +269,25 @@ const DateContainer = styled.div`
         color: blue;
     }
 `
+const DateContainerToday = styled.div`
+    display: grid;
+    width: calc((100% - 7px) / 7) ;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    background-color: #caffdc;
+    &:nth-child(7n +1){
+        color: red;
+    }
+    &:nth-child(7n){
+        color: blue;
+    }
+`
 const DateContainerOthers = styled.div`
     width: calc((100% - 7px) / 7) ;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
-    color: white;
-    background-color: lightgray;
+    color: gray;
+    background-color: #eeeeee;
 `
 const PriceContainer = styled.div`
     height: auto;

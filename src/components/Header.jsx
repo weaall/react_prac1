@@ -42,7 +42,7 @@ function Header() {
             </ContainerLi>
             <Divider></Divider>
             <ContainerLi>
-                <Link to={'/Calendar'}>
+                <Link to={'/AddChainSub'}>
                     <ListBtn>제휴기입</ListBtn>
                 </Link>
             </ContainerLi>

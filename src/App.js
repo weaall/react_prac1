@@ -7,7 +7,7 @@ import Header from './components/Header'
 import Login from "./bookingPage/LoginPage";
 import BookingMain from "./bookingPage/BookingMain";
 import Main from "./popUp/Main";
-import Calendar from "./calendar/Calendar";
+import AddChainSub from "./addChainPage/AddChainSub";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/BookingMain" element={<BookingMain />} />
           <Route path="/Main" element={<Main />} />
-          <Route path="/Calendar" element={<Calendar />} />
+          <Route path="/AddChainSub" element={<AddChainSub />} />
         </Routes>
       </div>
     </BrowserRouter>
