@@ -90,78 +90,81 @@ function Calendar() {
     return (
         <Container>
             <MarkUp>캘린더</MarkUp>
-            <CalendarContatiner>
-                <CalendarHeader>
-                    <h2>{viewYear}년</h2>
-                    <h2>{viewMonth + 1}월</h2>
-                    <CalendarNav>
-                        <NavBtn onClick={prevMonth}>&lt;</NavBtn>
-                        <NavTodayBtn onClick={goToday}>Today</NavTodayBtn>
-                        <NavBtn onClick={nextMonth}>&gt;</NavBtn>
-                    </CalendarNav>
-                </CalendarHeader>
-                <DaysContainer>
-                    <DayContainer>일</DayContainer>
-                    <DayContainer>월</DayContainer>
-                    <DayContainer>화</DayContainer>
-                    <DayContainer>수</DayContainer>
-                    <DayContainer>목</DayContainer>
-                    <DayContainer>금</DayContainer>
-                    <DayContainer>토</DayContainer>
-                </DaysContainer>
-                <DatesContainer>
-                    {dates.map((date, i) => {
-                        dates[i] = date;
-                        const condition = i >= firstDateIndex && i < lastDateIndex + 1
-                            ? 'this'
-                            : 'other';
-                        if (condition === 'other') {
-                            return (
-                                <DateContainerOthers onClick={() => navMonth(date)}>{date}</DateContainerOthers>
-                            )
-                        }
-                        else {
-                            const sample = arr.find(v => v.date === "0");
-                            const setedDate = arr.find(v => v.date === `${viewYear}-${viewMonth+1}-${date}`);
-                            let setedPrice = [];
-                            if (setedDate === undefined){
-                                setedPrice = 0;
-                            } else {
-                                setedPrice = setedDate.price;
+            <InnetContainer>
+                <CalendarContatiner>
+                    <CalendarHeader>
+                        <h2>{viewYear}년</h2>
+                        <h2>{viewMonth + 1}월</h2>
+                        <CalendarNav>
+                            <NavBtn onClick={prevMonth}>&lt;</NavBtn>
+                            <NavTodayBtn onClick={goToday}>Today</NavTodayBtn>
+                            <NavBtn onClick={nextMonth}>&gt;</NavBtn>
+                        </CalendarNav>
+                    </CalendarHeader>
+                    <DaysContainer>
+                        <DayContainer>일</DayContainer>
+                        <DayContainer>월</DayContainer>
+                        <DayContainer>화</DayContainer>
+                        <DayContainer>수</DayContainer>
+                        <DayContainer>목</DayContainer>
+                        <DayContainer>금</DayContainer>
+                        <DayContainer>토</DayContainer>
+                    </DaysContainer>
+                    <DatesContainer>
+                        {dates.map((date, i) => {
+                            dates[i] = date;
+                            const condition = i >= firstDateIndex && i < lastDateIndex + 1
+                                ? 'this'
+                                : 'other';
+                            if (condition === 'other') {
+                                return (
+                                    <DateContainerOthers onClick={() => navMonth(date)}>{date}</DateContainerOthers>
+                                )
                             }
-                            return (
-                                <DateContainer onClick={() => console.log(viewYear+"-"+(viewMonth+1)+"-"+ date + sample)}>{date}
-                                    <PriceContainer>
-                                        <PriceInput></PriceInput>
+                            else {
+                                const viewToday = new Date();
+                                const setedDate = arr.find(v => v.date === `${viewYear}-${viewMonth + 1}-${date}`);
+                                let setedPrice = [];
+                                if (setedDate === undefined) {
+                                    setedPrice = 0;
+                                } else {
+                                    setedPrice = setedDate.price;
+                                }
+                                return (
+                                    <DateContainer onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date)}>{date}
+                                        <PriceContainer>
+                                            <PriceInput></PriceInput>
+                                            <PriceInputBtn>+</PriceInputBtn>
+                                        </PriceContainer>
                                         <PriceCurrent>{setedPrice}</PriceCurrent>
-                                        <PriceCurrent>{}</PriceCurrent>
-                                    </PriceContainer>
-                                </DateContainer>
-                            )
-                        }
-                    })}
-                </DatesContainer>
-            </CalendarContatiner>
-            <PriceSetContainer>
-                <WeekdaysPriceContainer>
-                    <ViewPrice>WeekdaysPrice
-                    </ViewPrice>
-                    <InsertPrice>
-                    </InsertPrice>
-                </WeekdaysPriceContainer>
-                <FridaysPriceContainer>
-                <ViewPrice>FridaysPrice
-                    </ViewPrice>
-                    <InsertPrice>
-                    </InsertPrice>
-                </FridaysPriceContainer>
-                <SaterdaysPriceContainer>
-                <ViewPrice>SaterdaysPrice
-                    </ViewPrice>
-                    <InsertPrice>
-                    </InsertPrice>
-                </SaterdaysPriceContainer>
-            </PriceSetContainer>
+                                        <PriceCurrent>{viewToday.getMonth()}</PriceCurrent>
+                                    </DateContainer>
+                                )
+                            }
+                        })}
+                    </DatesContainer>
+                </CalendarContatiner>
+                <PriceSetContainer>
+                    <WeekdaysPriceContainer>
+                        <ViewPrice>WeekdaysPrice
+                        </ViewPrice>
+                        <InsertPrice>
+                        </InsertPrice>
+                    </WeekdaysPriceContainer>
+                    <FridaysPriceContainer>
+                        <ViewPrice>FridaysPrice
+                        </ViewPrice>
+                        <InsertPrice>
+                        </InsertPrice>
+                    </FridaysPriceContainer>
+                    <SaterdaysPriceContainer>
+                        <ViewPrice>SaterdaysPrice
+                        </ViewPrice>
+                        <InsertPrice>
+                        </InsertPrice>
+                    </SaterdaysPriceContainer>
+                </PriceSetContainer>
+            </InnetContainer>
         </Container>
     )
 }
@@ -172,13 +175,17 @@ export default Calendar;
 const Container = styled.div`
     font-family: Arial, Helvetica, sans-serif;
 `
+const InnetContainer = styled.div`
+    display: flex;
+`
 const MarkUp = styled.h2`
   color: darkgrey;
   margin: 20px;
 `
 const CalendarContatiner = styled.div`
     text-align: center;
-    width: 600px;
+    min-width: 300px;
+    max-width: 800px;
     margin: 50px;
 `
 const CalendarHeader = styled.div`
@@ -230,7 +237,7 @@ const DatesContainer = styled.div`
 `
 const DateContainer = styled.div`
     display: grid;
-    width: calc((100% - 8px) / 7) ;
+    width: calc((100% - 7px) / 7) ;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
     &:nth-child(7n +1){
@@ -241,7 +248,7 @@ const DateContainer = styled.div`
     }
 `
 const DateContainerOthers = styled.div`
-    width: calc((100% - 8px) / 7) ;
+    width: calc((100% - 7px) / 7) ;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
     color: white;
@@ -249,21 +256,31 @@ const DateContainerOthers = styled.div`
 `
 const PriceContainer = styled.div`
     height: auto;
+    display: flex;
+    padding: 0 10px;
 `
 const PriceInput = styled.input`
-    width: 80%;
+    width: 70%;
     height: 20px;
     border: 1px solid gray;
     border-radius: 4px;
 `
-const PriceCurrent = styled.p`
-    
+const PriceInputBtn = styled.button`
+    width: 30%;
+    height: 24px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    cursor: pointer;
+`
+const PriceCurrent = styled.div`
+    margin: 0;
 `
 const PriceSetContainer = styled.div`
-    display: flex;
+    display: inline-grid;
     justify-content: space-between;
     text-align: center;
-    width: 600px;
+    width: 100px;
+    height: 200px;
     margin: 50px;
 `
 const WeekdaysPriceContainer = styled.div`
