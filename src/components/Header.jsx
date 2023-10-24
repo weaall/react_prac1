@@ -43,7 +43,19 @@ function Header() {
             <Divider></Divider>
             <ContainerLi>
                 <Link to={'/AddChainSub'}>
-                    <ListBtn>제휴기입</ListBtn>
+                    <ListBtn>제휴객실</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
+                <Link to={'/AddChain'}>
+                    <ListBtn>제휴보기</ListBtn>
+                </Link>
+            </ContainerLi>
+            <Divider></Divider>
+            <ContainerLi>
+                <Link to={'/AddChain'}>
+                    <ListBtn>제휴추가</ListBtn>
                 </Link>
             </ContainerLi>
         </HeaderStyle>

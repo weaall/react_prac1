@@ -8,6 +8,7 @@ import Login from "./bookingPage/LoginPage";
 import BookingMain from "./bookingPage/BookingMain";
 import Main from "./popUp/Main";
 import AddChainSub from "./addChainPage/AddChainSub";
+import AddChain from "./addChainPage/AddChain";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/BookingMain" element={<BookingMain />} />
           <Route path="/Main" element={<Main />} />
           <Route path="/AddChainSub" element={<AddChainSub />} />
+          <Route path="/AddChain" element={<AddChain />} />
         </Routes>
       </div>
     </BrowserRouter>

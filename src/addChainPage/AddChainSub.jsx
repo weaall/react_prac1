@@ -141,12 +141,12 @@ function AddChainSub() {
 
                                 if ((viewToday.getMonth() === viewMonth) && (viewToday.getDate() === date)) {
                                     return (
-                                        <DateContainerToday onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date)}>{date}
+                                        <DateContainerToday onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date + "/"+ setedPrice)}>{date}
                                             <PriceContainer>
-                                                <PriceInput onChange={onChangeNewPriceInput} value={newPriceInput} maxLength='6'></PriceInput>
-                                                <PriceInputBtn onClick={() => arr.map((item) => item.date === `${viewYear}-${viewMonth + 1}-${date}` ? { ...item, price: {newPriceInput}} : item)}>+</PriceInputBtn>
+                                                <PriceInput value={newPriceInput} maxLength='7'></PriceInput>
+                                                <PriceInputBtn>+</PriceInputBtn>
                                             </PriceContainer>
-                                            <PriceCurrent>{arr.find(v => v.date === `${viewYear}-${viewMonth + 1}-${date}`).price}</PriceCurrent>
+                                            <PriceCurrent>{setedPrice}</PriceCurrent>
                                             
                                         </DateContainerToday>
                                     )
@@ -155,7 +155,7 @@ function AddChainSub() {
                                     return (
                                         <DateContainer onClick={() => console.log(viewYear + "-" + (viewMonth + 1) + "-" + date)}>{date}
                                             <PriceContainer>
-                                                <PriceInput onChange={onChangeNewPriceInput} value={newPriceInput} maxLength='6'></PriceInput>
+                                                <PriceInput value={newPriceInput} maxLength='7'></PriceInput>
                                                 <PriceInputBtn>+</PriceInputBtn>
                                             </PriceContainer>
                                             <PriceCurrent>{setedPrice}</PriceCurrent>
