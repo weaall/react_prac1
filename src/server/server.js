@@ -22,7 +22,7 @@ app.get("/member_table", (req, res) => {
 
 app.get("/member_table/name", (req, res) => {
   console.log("이름으로 찾기");
-  db.query("select * from member_table", function (err, rows) {
+  db.query("select * from member_table", (err, rows) => {
     if (!err) {
       console.log(rows[0].name);
       res.send(rows[0].name);
@@ -60,6 +60,28 @@ app.post("/delete", (req, res) => {
   db.query(`DELETE FROM member_table WHERE id=${id};`, (err, result) => {
     res.send(result);
   });
+});
+
+const dbChain = require("./config/db.js");
+
+app.post("/insertChainsMain", (req, res) => {
+  console.log("체인데이터 삽입");
+  console.log(req.body);
+  const chainName = req.body.chainName;
+  const chainPlace = req.body. chainPlace;
+  const chainRegion = req.body.chainRegion;
+  const chainAddress = req.body.chainAddress;
+  const chainAddressDetail = req.body.chainAddressDetail;
+  const chainMainImage = req.body.chainMainImage;
+  const chainSubImage1 = req.body.chainSubImage1;
+  const chainSubImage2 = req.body.chainSubImage2;
+  dbChain.query(
+    `INSERT INTO chains_main (chainName, chainPlace, chainRegion, chainAddress, chainAddressDetail, chainMainImage, chainSubImage1, chainSubImage2) 
+    VALUES('${chainName}','${chainPlace}','${chainRegion}','${chainAddress}','${chainAddressDetail}','${chainMainImage}','${chainSubImage1}','${chainSubImage2}';`,
+    (err, result) => {
+      res.send(result);
+    }
+  );
 });
 
 app.listen(PORT, () => {

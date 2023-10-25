@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 import Postcode from './DaumPostPopUp';
@@ -8,47 +8,61 @@ function AddChain() {
 
   const navigate = useNavigate();
 
-  const [regoBrandReg, setregoBrandReg] = useState('회원구분 🍊')
-  const [regoGroupReg, setregoGroupReg] = useState('')
-  const [regoNumReg, setregoNumReg] = useState('')
-  const [regoGradeReg, setregoGradeReg] = useState('')
-  const [nameReg, setNameReg] = useState('')
-  const [regoDateReg, setregoDateReg] = useState('')
-  const [phoneReg, setPhoneReg] = useState('')
+  const imgRef1 = useRef();
+  const imgRef2 = useRef();
+  const imgRef3 = useRef();
+
+  const [chainNameReg, setchainNameReg] = useState('')
+  const [chainRegionReg, setchainRegionReg] = useState('서울')
+  const [chainPlaceReg, setchainPlaceReg] = useState('')
   const [addressReg, setAddressReg] = useState('')
   const [addressDetailReg, setAddressDetailReg] = useState('')
+  const [mainImageReg, setmainImageReg] = useState(null);
+  const [subImageReg1, setsubImageReg1] = useState(null);
+  const [subImageReg2, setsubImageReg2] = useState(null);
 
-  const onChangeRegoBrand = (e) => { setregoBrandReg(e.target.value); };
-  const onChangeRegoGroup = (e) => { setregoGroupReg(e.target.value); };
-  const onChangeRegoNum = (e) => {
-    setregoNumReg(e.target.value
-      .replace(/[^0-9]/g, '')
-      .replace(/(\d{6})(\d{8})/, '$1-$2'));
-  };
-  const onChangeRegoGrade = (e) => { setregoGradeReg(e.target.value); };
-  const onChangeName = (e) => { setNameReg(e.target.value); };
-  const onChangeDate = (e) => { setregoDateReg(e.target.value); };
-  const onChangePhone = (e) => {
-    setPhoneReg(e.target.value.replace(/[^0-9]/g, '')
-      .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
-  };
-  const onChangeAddress = num => { setAddressReg(num); };
+  const onChangeChainName = (e) => { setchainNameReg(e.target.value); };
+  const onChangeChainRegion = (e) => { setchainRegionReg(e.target.value); };
+  const onChangeChainPlace = (e) => { setchainPlaceReg(e.target.value); };
+  const onChangeAddressChain = num => { setAddressReg(num); };
   const onChangeAddressDetail = (e) => { setAddressDetailReg(e.target.value); };
+  const onChangMainImage = () => {
+    const file = imgRef1.current.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setmainImageReg(reader.result);
+    };
+  };
+  const onChangSubImage1 = () => {
+    const file = imgRef2.current.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setsubImageReg1(reader.result);
+    };
+  };
+  const onChangSubImage2 = () => {
+    const file = imgRef3.current.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setsubImageReg2(reader.result);
+    };
+  };
 
 
 
-
-  const insertData = async (regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) => {
-    await axios.post("/insert", {
-      regoBrand: regoBrandReg,
-      regoGroup: regoGroupReg,
-      regoNum: regoNumReg,
-      regoGrade: regoGradeReg,
-      name: nameReg,
-      regoDate: regoDateReg,
-      phone: phoneReg,
-      address: addressReg,
-      addressDetail: addressDetailReg
+  const insertData = async (chainNameReg, chainPlaceReg, chainRegionReg, addressReg, addressDetailReg, mainImageReg, subImageReg1, subImageReg2) => {
+    await axios.post("/insertChainsMain", {
+      chainName: chainNameReg,
+      chainPlace: chainPlaceReg,
+      chainRegion: chainRegionReg,
+      chainAddress: addressReg,
+      chainAddressDetail: addressDetailReg,
+      chainMainImage: mainImageReg,
+      chainSubImage1: subImageReg1,
+      chainSubImage2: subImageReg2,
     }).then(function (response) {
       console.log(response);
     })
@@ -57,9 +71,9 @@ function AddChain() {
       });
   }
 
-  function ConfirmAlert(regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) {
+  function ConfirmAlert(chainNameReg, chainPlaceReg, chainRegionReg, addressReg, addressDetailReg, mainImageReg, subImageReg1, subImageReg2) {
     if (window.confirm('추가하시겠습니까?')) {
-      insertData(regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg)
+      insertData(chainNameReg, chainPlaceReg, chainRegionReg, addressReg, addressDetailReg, mainImageReg, subImageReg1, subImageReg2)
       navigate('/');
     } else {
       return;
@@ -75,13 +89,19 @@ function AddChain() {
         <GridRow>
           <GridCell>
             <Tag>제휴사이름</Tag>
-            <InputBox onChange={onChangeRegoNum} value={regoNumReg} length='14' maxLength='15'/>
-            <UnderTag draggable='true' value={regoNumReg} length='14'>-을 제회한 숫자만 입력해주세요.</UnderTag>
+            <InputBox onChange={onChangeChainName} value={chainNameReg} length='2' maxLength='15'/>
+            <UnderTag draggable='true' value={chainNameReg} length='2'>두글자이상 입력해주세요!</UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>지역</Tag>
-            <SelectBox onChange={onChangeRegoGrade} value={regoGradeReg}>
+            <InputBox onChange={onChangeChainPlace} value={chainPlaceReg} length='2' />
+            <UnderTag draggable='true' value={chainPlaceReg} length='2'>두글자이상 입력해주세요!</UnderTag>
+          </GridCell>
+
+          <GridCell>
+            <Tag>구분</Tag>
+            <SelectBox onChange={onChangeChainRegion} value={chainRegionReg}>
                     <option value="서울">서울</option>
                     <option value="경기">경기</option>
                     <option value="제주">제주</option>
@@ -90,13 +110,6 @@ function AddChain() {
                     <option value="경상">경상</option>
                     <option value="전라">전라</option>
             </SelectBox>
-            <UnderTag draggable='true' value={nameReg} length='2'>asd</UnderTag>
-          </GridCell>
-
-          <GridCell>
-            <Tag>설명</Tag>
-            <InputBox onChange={onChangeName} value={nameReg} length='2' />
-            <UnderTag draggable='true' value={nameReg} length='2'>두글자이상 입력해주세요!</UnderTag>
           </GridCell>
         </GridRow>
 
@@ -104,20 +117,46 @@ function AddChain() {
           <GridCell>
             <AddressBox>
               <Tag>주소</Tag>
-              <Postcode onChangeAddress={onChangeAddress} />
+              <Postcode onChangeAddress={onChangeAddressChain} />
             </AddressBox>
             <InputBox value={addressReg}></InputBox>
-            <UnderTag draggable='true' onChangeAddress={onChangeAddress} value={addressReg} length='2'></UnderTag>
+            <UnderTag draggable='true' onChangeAddress={onChangeAddressChain} value={addressReg} length='0'>123</UnderTag>
           </GridCell>
 
           <GridCell>
             <Tag>상세주소</Tag>
             <InputBox onChange={onChangeAddressDetail} value={addressDetailReg} />
-            <UnderTag draggable='true' onChange={onChangeAddressDetail} value={addressDetailReg} length='0'></UnderTag>
+            <UnderTag draggable='true' onChange={onChangeAddressDetail} value={addressDetailReg} length='0'>123</UnderTag>
           </GridCell>
         </GridRow>
 
-        <SubmitBtn onClick={() => { ConfirmAlert(regoBrandReg, regoGroupReg, regoNumReg, regoGradeReg, nameReg, regoDateReg, phoneReg, addressReg, addressDetailReg) }}>추가</SubmitBtn>
+        <GridRow>
+          <GridCell>
+            <Tag>메인사진</Tag>
+            <UploadContainer>
+            <UploadBox onChange={onChangMainImage} ref={imgRef1} accept="image/*" type="file"/>
+            <UploadImage src={mainImageReg} />
+            </UploadContainer>
+          </GridCell>
+
+          <GridCell>
+            <Tag>제휴사진1</Tag>
+            <UploadContainer>
+            <UploadBox onChange={onChangSubImage1} ref={imgRef2} accept="image/*" type="file"/>
+            <UploadImage src={subImageReg1} />
+            </UploadContainer>
+          </GridCell>
+
+          <GridCell>
+            <Tag>제휴사진2</Tag>
+            <UploadContainer>
+            <UploadBox onChange={onChangSubImage2} ref={imgRef3} accept="image/*" type="file"/>
+            <UploadImage src={subImageReg2} />
+            </UploadContainer>
+          </GridCell>
+        </GridRow>
+
+        <SubmitBtn onClick={() => { ConfirmAlert(chainNameReg, chainPlaceReg, chainRegionReg, addressReg, addressDetailReg, mainImageReg, subImageReg1, subImageReg2) }}>추가</SubmitBtn>
       </GridTable>
     </Container>
   )
@@ -203,6 +242,7 @@ const InputBox = styled.input`
         ${checkInputLengthFocus};
     }
 `
+
 const SelectBox = styled.select`
     border: solid 1px black;
     position: relative;
@@ -221,6 +261,38 @@ const SelectBox = styled.select`
         outline: none;
     }
 `
+const UploadContainer = styled.div`
+    text-align: center;
+    width: 100%;
+    height: 150px;
+    border: solid 1px black;
+    font-size: 1rem;
+    border-radius: 4px;
+    flex-grow: 1;
+    outline: none;
+    overflow: hidden;
+    padding: 0.5rem;
+    background: none;
+    margin-bottom: 30px;
+`
+const UploadBox = styled.input`
+    width: 100%;
+    border: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    flex-grow: 1;
+    height: 3rem;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    padding-inline-end: 0.5rem;
+    padding-inline-start: 0.5rem;
+    background: none;
+`
+const UploadImage = styled.img`
+    width: 100%;
+`
+
 const AddressBox = styled.div`
   display: inline-flex;
   padding: 0px;

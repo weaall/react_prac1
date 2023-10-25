@@ -13,7 +13,7 @@ const dbChain = mysql.createPool({
     host : 'localhost',
     user : 'root',
     password : '0000',
-    database : 'manager'
+    database : 'chains_db'
 })
 
 module.exports = dbChain;
